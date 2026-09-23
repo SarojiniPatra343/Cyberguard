@@ -1,0 +1,991 @@
+/* =========================================
+   CYBERGUARD - THREAT RESPONSE CENTER
+   BLACK + GREEN CYBERSECURITY THEME
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.respond-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 65px 25px 100px;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 50% 8%,
+            rgba(0, 255, 120, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 255, 120, 0.06),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(0, 200, 100, 0.04),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #000000,
+            #031008,
+            #000000
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.respond-container {
+    width: 100%;
+    max-width: 1150px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.respond-header {
+    text-align: center;
+
+    margin-bottom: 45px;
+
+    padding-top: 15px;
+}
+
+
+.respond-header > span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #00ff88;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+}
+
+
+.respond-icon {
+    width: 78px;
+    height: 78px;
+
+    margin: 0 auto 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #00ff88;
+
+    background: rgba(0, 255, 120, 0.07);
+
+    border: 1px solid rgba(0, 255, 120, 0.30);
+
+    font-size: 32px;
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 120, 0.10);
+
+    animation: warningPulse 2.5s infinite;
+}
+
+
+@keyframes warningPulse {
+
+    0% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 20px rgba(0, 255, 120, 0.08);
+    }
+
+    50% {
+        transform: scale(1.05);
+
+        box-shadow:
+            0 0 35px rgba(0, 255, 120, 0.22);
+    }
+
+    100% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 20px rgba(0, 255, 120, 0.08);
+    }
+}
+
+
+.respond-header h1 {
+    margin: 0 0 14px;
+
+    color: #ffffff;
+
+    font-size: clamp(35px, 5vw, 52px);
+
+    line-height: 1.15;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #b8ffd9,
+        #00ff88
+    );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+}
+
+
+.respond-header p {
+    max-width: 720px;
+
+    margin: 0 auto;
+
+    color: #8fa89a;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   RESPONSE STATUS CARD
+========================================= */
+
+.response-status-card {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 165px;
+
+    margin-bottom: 25px;
+
+    padding: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8, 20, 12, 0.98),
+            rgba(2, 8, 4, 0.98)
+        );
+
+    border: 1px solid rgba(0, 255, 120, 0.28);
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.50);
+
+    transition: 0.3s ease;
+}
+
+
+.response-status-card:hover {
+    border-color: rgba(0, 255, 120, 0.50);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.55),
+        0 0 25px rgba(0, 255, 120, 0.06);
+}
+
+
+/* =========================================
+   WARNING ICON
+========================================= */
+
+.response-warning-icon {
+    width: 75px;
+    height: 75px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: rgba(0, 255, 120, 0.07);
+
+    color: #00ff88;
+
+    font-size: 30px;
+
+    box-shadow:
+        inset 0 0 20px rgba(0, 255, 120, 0.03);
+}
+
+
+/* =========================================
+   STATUS CONTENT
+========================================= */
+
+.response-status-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.response-status-content > span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #668071;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.response-status-content h2 {
+    margin-bottom: 7px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+
+    line-height: 1.2;
+}
+
+
+.response-status-content p {
+    color: #91a99a;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   ACTIVE BUTTON
+========================================= */
+
+.active-button {
+    position: relative;
+
+    min-width: 105px;
+
+    padding: 15px 24px;
+
+    flex-shrink: 0;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(0, 255, 120, 0.40);
+
+    background: rgba(0, 255, 120, 0.06);
+
+    color: #00ff88;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+
+.active-button:hover {
+    transform: translateY(-2px);
+
+    border-color: #00ff88;
+
+    background: rgba(0, 255, 120, 0.13);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 120, 0.15);
+}
+
+
+/* =========================================
+   ACTIVE STATE
+========================================= */
+
+.active-button.is-active {
+    border-color: rgba(0, 255, 120, 0.60);
+
+    background: rgba(0, 255, 120, 0.09);
+
+    color: #00ff88;
+
+    box-shadow:
+        0 0 18px rgba(0, 255, 120, 0.12);
+
+    animation: activeGlow 2s infinite;
+}
+
+
+.active-button.is-active:hover {
+    background: rgba(0, 255, 120, 0.15);
+
+    border-color: #00ff88;
+
+    box-shadow:
+        0 0 28px rgba(0, 255, 120, 0.22);
+}
+
+
+@keyframes activeGlow {
+
+    0% {
+        box-shadow:
+            0 0 12px rgba(0, 255, 120, 0.08);
+    }
+
+    50% {
+        box-shadow:
+            0 0 25px rgba(0, 255, 120, 0.20);
+    }
+
+    100% {
+        box-shadow:
+            0 0 12px rgba(0, 255, 120, 0.08);
+    }
+}
+
+
+/* =========================================
+   RESPONSE MESSAGE
+========================================= */
+
+.response-message {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+
+    padding: 15px 18px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.response-message.success {
+    color: #00ff88;
+
+    background: rgba(0, 255, 120, 0.06);
+
+    border: 1px solid rgba(0, 255, 120, 0.25);
+}
+
+
+.response-message.warning {
+    color: #b8ffcf;
+
+    background: rgba(0, 255, 120, 0.04);
+
+    border: 1px solid rgba(0, 255, 120, 0.18);
+}
+
+
+.response-message svg {
+    flex-shrink: 0;
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   RESPONSE ACTIONS
+========================================= */
+
+.response-actions {
+    width: 100%;
+
+    margin-top: 35px;
+}
+
+
+.response-section-title {
+    margin-bottom: 22px;
+}
+
+
+.response-section-title h2 {
+    margin-bottom: 7px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+}
+
+
+.response-section-title p {
+    color: #789083;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   RESPONSE GRID
+========================================= */
+
+.response-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================
+   RESPONSE CARD
+========================================= */
+
+.response-card {
+    position: relative;
+
+    min-height: 250px;
+
+    padding: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8, 22, 13, 0.98),
+            rgba(2, 8, 4, 0.98)
+        );
+
+    border: 1px solid rgba(0, 255, 120, 0.12);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.response-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    top: -70px;
+    right: -70px;
+
+    border-radius: 50%;
+
+    background: rgba(0, 255, 120, 0.05);
+
+    transition: 0.4s;
+}
+
+
+.response-card:hover::before {
+    transform: scale(2.3);
+}
+
+
+.response-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(0, 255, 120, 0.40);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.50),
+        0 0 25px rgba(0, 255, 120, 0.07);
+}
+
+
+/* =========================================
+   SELECTED RESPONSE CARD
+========================================= */
+
+.response-card.selected {
+    border-color: rgba(0, 255, 120, 0.60);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(5, 35, 17, 0.98),
+            rgba(2, 15, 8, 0.98)
+        );
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 120, 0.10);
+}
+
+
+.response-card.selected .response-card-icon {
+    color: #00ff88;
+
+    background: rgba(0, 255, 120, 0.10);
+
+    border-color: rgba(0, 255, 120, 0.30);
+}
+
+
+/* =========================================
+   RESPONSE CARD ICON
+========================================= */
+
+.response-card-icon {
+    position: relative;
+    z-index: 1;
+
+    width: 53px;
+    height: 53px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(0, 255, 120, 0.07);
+
+    border: 1px solid rgba(0, 255, 120, 0.15);
+
+    color: #00ff88;
+
+    font-size: 21px;
+
+    transition: 0.3s;
+}
+
+
+.response-card:hover .response-card-icon {
+    background: rgba(0, 255, 120, 0.13);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 120, 0.10);
+}
+
+
+/* =========================================
+   CARD TEXT
+========================================= */
+
+.response-card h3 {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: 10px;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    line-height: 1.3;
+}
+
+
+.response-card p {
+    position: relative;
+    z-index: 1;
+
+    flex: 1;
+
+    margin-bottom: 20px;
+
+    color: #81988a;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CARD BUTTON
+========================================= */
+
+.response-card button {
+    position: relative;
+    z-index: 2;
+
+    padding: 9px 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #00ff88;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.response-card:hover button {
+    color: #00ff88;
+
+    transform: translateX(3px);
+}
+
+
+.response-card.selected button {
+    color: #00ff88;
+}
+
+
+/* =========================================
+   CURRENT RESPONSE
+========================================= */
+
+.current-response {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 30px;
+
+    padding: 23px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 255, 120, 0.07),
+            rgba(0, 100, 50, 0.03)
+        );
+
+    border: 1px solid rgba(0, 255, 120, 0.25);
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 120, 0.04);
+}
+
+
+.current-response > svg {
+    flex-shrink: 0;
+
+    color: #00ff88;
+
+    font-size: 27px;
+}
+
+
+.current-response span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #658071;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.current-response h3 {
+    margin-bottom: 5px;
+
+    color: #00ff88;
+
+    font-size: 18px;
+}
+
+
+.current-response p {
+    color: #88a091;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   SUBTLE SECURITY GRID
+========================================= */
+
+.respond-page::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.16;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 255, 120, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 255, 120, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    z-index: 0;
+}
+
+
+.respond-container {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================
+   LARGE TABLET
+========================================= */
+
+@media (max-width: 950px) {
+
+    .response-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .response-status-card {
+        align-items: flex-start;
+    }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 720px) {
+
+    .respond-page {
+        padding: 50px 18px 80px;
+    }
+
+
+    .response-status-card {
+        flex-wrap: wrap;
+
+        padding: 25px;
+    }
+
+
+    .response-status-content {
+        flex-basis: calc(100% - 100px);
+    }
+
+
+    .active-button {
+        width: 100%;
+
+        margin-top: 5px;
+    }
+
+
+    .response-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+    .respond-page {
+        padding: 40px 15px 65px;
+    }
+
+
+    .respond-header {
+        padding-top: 5px;
+
+        margin-bottom: 35px;
+    }
+
+
+    .respond-icon {
+        width: 68px;
+        height: 68px;
+
+        font-size: 27px;
+    }
+
+
+    .respond-header h1 {
+        font-size: 32px;
+    }
+
+
+    .respond-header p {
+        font-size: 14px;
+    }
+
+
+    .response-status-card {
+        padding: 21px;
+
+        gap: 16px;
+    }
+
+
+    .response-warning-icon {
+        width: 60px;
+        height: 60px;
+
+        font-size: 24px;
+    }
+
+
+    .response-status-content {
+        flex-basis: calc(100% - 76px);
+    }
+
+
+    .response-status-content h2 {
+        font-size: 21px;
+    }
+
+
+    .response-status-content p {
+        font-size: 12px;
+    }
+
+
+    .response-section-title h2 {
+        font-size: 23px;
+    }
+
+
+    .response-card {
+        min-height: 225px;
+
+        padding: 22px;
+    }
+
+
+    .current-response {
+        align-items: flex-start;
+
+        padding: 20px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL SCREEN
+========================================= */
+
+@media (max-width: 360px) {
+
+    .respond-header h1 {
+        font-size: 28px;
+    }
+
+
+    .response-status-content {
+        flex-basis: 100%;
+    }
+
+
+    .response-warning-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+
+    .active-button {
+        padding: 13px;
+    }
+}

@@ -1,0 +1,875 @@
+/* =========================================================
+   CYBERGUARD - THREAT HISTORY
+   BLACK / NEON GREEN SECURITY UI
+========================================================= */
+
+.history-page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 50px 35px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0, 255, 102, 0.12),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #000000 0%,
+            #031208 50%,
+            #000000 100%
+        );
+
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.history-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.history-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+.history-header-icon {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: rgba(0, 255, 102, 0.08);
+
+    border: 1px solid rgba(0, 255, 102, 0.28);
+
+    color: #00ff66;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 102, 0.12);
+}
+
+.history-header h1 {
+    margin: 0;
+
+    font-size: 30px;
+
+    color: #ffffff;
+}
+
+.history-header p {
+    margin: 6px 0 0;
+
+    color: #7fa58d;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   REFRESH BUTTON
+========================================================= */
+
+.history-refresh {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(0, 255, 102, 0.3);
+
+    background: rgba(0, 255, 102, 0.07);
+
+    color: #00ff66;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.history-refresh:hover {
+    background: rgba(0, 255, 102, 0.15);
+
+    border-color: #00ff66;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 18px rgba(0, 255, 102, 0.15);
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.history-summary {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+.history-summary-card {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(3, 18, 8, 0.92);
+
+    border: 1px solid rgba(0, 255, 102, 0.14);
+
+    transition: 0.25s ease;
+}
+
+.history-summary-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(0, 255, 102, 0.38);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(0, 255, 102, 0.06);
+}
+
+.history-summary-card > svg {
+    width: 45px;
+    height: 45px;
+
+    padding: 12px;
+
+    border-radius: 11px;
+
+    color: #00ff66;
+
+    background: rgba(0, 255, 102, 0.09);
+}
+
+.history-summary-card span {
+    display: block;
+
+    color: #789484;
+
+    font-size: 13px;
+}
+
+.history-summary-card strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #ffffff;
+
+    font-size: 28px;
+}
+
+.threat-summary > svg {
+    color: #ff5267;
+
+    background: rgba(255, 60, 80, 0.1);
+}
+
+.safe-summary > svg {
+    color: #00ff66;
+
+    background: rgba(0, 255, 102, 0.1);
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.history-controls {
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+
+.history-search {
+    width: 100%;
+
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 17px;
+
+    margin-bottom: 15px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(2, 12, 6, 0.94);
+
+    border:
+        1px solid rgba(0, 255, 102, 0.16);
+}
+
+.history-search:focus-within {
+    border-color: rgba(0, 255, 102, 0.45);
+
+    box-shadow:
+        0 0 18px rgba(0, 255, 102, 0.07);
+}
+
+.history-search svg {
+    flex-shrink: 0;
+
+    color: #00ff66;
+
+    font-size: 17px;
+}
+
+.history-search input {
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+.history-search input::placeholder {
+    color: #587060;
+}
+
+
+/* =========================================================
+   FILTER BUTTONS
+========================================================= */
+
+.history-filters {
+    width: 100%;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+.filter-btn {
+    padding: 8px 14px;
+
+    border-radius: 7px;
+
+    border: 1px solid rgba(0, 255, 102, 0.15);
+
+    background:
+        rgba(3, 18, 8, 0.85);
+
+    color: #7f9c89;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.filter-btn:hover {
+    color: #00ff66;
+
+    border-color:
+        rgba(0, 255, 102, 0.38);
+
+    background:
+        rgba(0, 255, 102, 0.06);
+}
+
+.filter-btn.active {
+    color: #000000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c853,
+            #00ff66
+        );
+
+    border-color: transparent;
+
+    box-shadow:
+        0 5px 18px rgba(0, 255, 102, 0.2);
+}
+
+
+/* =========================================================
+   HISTORY CARD
+========================================================= */
+
+.history-card {
+    width: 100%;
+
+    background:
+        rgba(2, 12, 6, 0.92);
+
+    border:
+        1px solid rgba(0, 255, 102, 0.14);
+
+    border-radius: 17px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.history-table {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.history-table-header {
+    min-width: 950px;
+
+    display: grid;
+
+    grid-template-columns:
+        90px
+        minmax(230px, 1fr)
+        110px
+        80px
+        110px
+        180px;
+
+    gap: 15px;
+
+    align-items: center;
+
+    padding: 16px 20px;
+
+    background:
+        rgba(0, 255, 102, 0.035);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    color: #64806f;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* =========================================================
+   TABLE ROW
+========================================================= */
+
+.history-table-row {
+    min-width: 950px;
+
+    display: grid;
+
+    grid-template-columns:
+        90px
+        minmax(230px, 1fr)
+        110px
+        80px
+        110px
+        180px;
+
+    gap: 15px;
+
+    align-items: center;
+
+    padding: 18px 20px;
+
+    color: #d5e5da;
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    transition: 0.2s ease;
+}
+
+.history-table-row:last-child {
+    border-bottom: none;
+}
+
+.history-table-row:hover {
+    background:
+        rgba(0, 255, 102, 0.045);
+}
+
+
+/* =========================================================
+   TYPE
+========================================================= */
+
+.history-type {
+    display: inline-block;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background:
+        rgba(0, 255, 102, 0.08);
+
+    color: #00ff66;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   THREAT
+========================================================= */
+
+.history-threat {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-width: 0;
+
+    color: #dce9df;
+}
+
+.history-threat svg {
+    flex-shrink: 0;
+
+    color: #00ff66;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   RISK
+========================================================= */
+
+.history-risk {
+    font-weight: 800;
+
+    font-size: 12px;
+}
+
+/* Risk colors intentionally preserved */
+
+.history-risk.critical {
+    color: #ff4d64;
+}
+
+.history-risk.high {
+    color: #ff994d;
+}
+
+.history-risk.medium {
+    color: #ffd34d;
+}
+
+.history-risk.low {
+    color: #00ff66;
+}
+
+.history-risk.safe {
+    color: #00ff66;
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.history-score {
+    color: #ffffff;
+
+    font-weight: 700;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.history-status {
+    width: fit-content;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 6px 9px;
+
+    border-radius: 6px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+.history-status.threat {
+    color: #ff6476;
+
+    background:
+        rgba(255, 60, 80, 0.09);
+}
+
+.history-status.safe {
+    color: #00ff66;
+
+    background:
+        rgba(0, 255, 102, 0.08);
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.history-date {
+    color: #698472;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.history-empty {
+    min-height: 260px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.history-empty > svg {
+    color: #00ff66;
+
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.history-empty h3 {
+    margin: 0;
+
+    color: #ffffff;
+}
+
+.history-empty p {
+    margin-top: 7px;
+
+    color: #698472;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   DATABASE STATUS
+========================================================= */
+
+.history-database {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 23px;
+
+    padding: 15px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(0, 255, 102, 0.045);
+
+    border:
+        1px solid rgba(0, 255, 102, 0.16);
+
+    color: #83c99b;
+
+    font-size: 13px;
+}
+
+.history-database svg {
+    color: #00ff66;
+}
+
+.history-database strong {
+    color: #00ff66;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.history-loading {
+    min-height: 75vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.history-loading-icon {
+    color: #00ff66;
+
+    font-size: 38px;
+
+    animation: history-spin 1s linear infinite;
+}
+
+.history-loading h2 {
+    margin-top: 18px;
+
+    color: #ffffff;
+}
+
+.history-loading p {
+    margin-top: 7px;
+
+    color: #698472;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.history-error {
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.history-error > svg {
+    color: #ff5267;
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+.history-error h2 {
+    color: #ffffff;
+}
+
+.history-error p {
+    margin-top: 8px;
+
+    color: #81998a;
+}
+
+.history-retry {
+    margin-top: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 20px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c853,
+            #00ff66
+        );
+
+    color: #000000;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.history-retry:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 255, 102, 0.18);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .history-summary {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .history-page {
+        padding: 30px 15px;
+    }
+
+    .history-header {
+        flex-wrap: wrap;
+    }
+
+    .history-header h1 {
+        font-size: 24px;
+    }
+
+    .history-refresh {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+    .history-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .history-filters {
+        gap: 7px;
+    }
+
+    .filter-btn {
+        padding: 7px 11px;
+    }
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes history-spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}

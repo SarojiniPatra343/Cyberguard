@@ -1,0 +1,1112 @@
+/* =========================================
+CYBERGUARD - PHISHING DETECTION
+BLACK + GREEN CYBERSECURITY THEME
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+margin: 0;
+background: #000000;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================
+MAIN PAGE
+========================================= */
+
+.phishing-page {
+min-height: 100vh;
+width: 100%;
+padding: 70px 20px 100px;
+
+background:
+    radial-gradient(
+        circle at 50% 15%,
+        rgba(0, 255, 120, 0.12),
+        transparent 30%
+    ),
+    radial-gradient(
+        circle at 50% 65%,
+        rgba(0, 255, 80, 0.08),
+        transparent 35%
+    ),
+    linear-gradient(
+        135deg,
+        #000000 0%,
+        #001a0b 50%,
+        #000000 100%
+    );
+
+color: #ffffff;
+
+overflow-x: hidden;
+
+
+}
+
+/* =========================================
+MAIN CONTAINER
+========================================= */
+
+.phishing-container {
+width: 100%;
+max-width: 1050px;
+margin: 0 auto;
+}
+
+/* =========================================
+HEADER
+========================================= */
+
+.phishing-header {
+width: 100%;
+text-align: center;
+margin-bottom: 50px;
+}
+
+/* =========================================
+SHIELD ICON
+========================================= */
+
+.phishing-shield {
+width: 90px;
+height: 90px;
+
+margin: 0 auto 25px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 50%;
+
+background: rgba(0, 255, 100, 0.08);
+
+border: 1px solid rgba(0, 255, 100, 0.50);
+
+color: #00ff66;
+
+font-size: 40px;
+
+box-shadow:
+    0 0 20px rgba(0, 255, 100, 0.25),
+    0 0 50px rgba(0, 255, 100, 0.10);
+
+animation: shieldPulse 3s ease-in-out infinite;
+
+}
+
+/* =========================================
+SHIELD ANIMATION
+========================================= */
+
+@keyframes shieldPulse {
+0% {
+    transform: scale(1);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 100, 0.20);
+}
+
+50% {
+    transform: scale(1.06);
+
+    box-shadow:
+        0 0 35px rgba(0, 255, 100, 0.40),
+        0 0 70px rgba(0, 255, 100, 0.12);
+}
+
+100% {
+    transform: scale(1);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 100, 0.20);
+}
+
+
+}
+
+/* =========================================
+MAIN HEADING
+========================================= */
+
+.phishing-header h1 {
+margin-bottom: 15px;
+color: #00ff66;
+
+font-size: 44px;
+
+font-weight: 800;
+
+line-height: 1.2;
+
+letter-spacing: 0.5px;
+
+-webkit-text-fill-color: #00ff66;
+
+text-shadow:
+    0 0 10px rgba(0, 255, 100, 0.35),
+    0 0 25px rgba(0, 255, 100, 0.15);
+
+}
+
+/* =========================================
+HEADER DESCRIPTION
+========================================= */
+
+.phishing-header p {
+width: 100%;
+max-width: 760px;
+
+
+margin: 0 auto;
+
+color: #b8d8c0;
+
+font-size: 17px;
+
+font-weight: 400;
+
+line-height: 1.7;
+
+letter-spacing: 0.2px;
+
+
+}
+
+/* =========================================
+SCANNER CARD
+========================================= */
+
+.phishing-card {
+width: 100%;
+
+
+padding: 38px;
+
+background: rgba(3, 12, 6, 0.96);
+
+border: 1px solid rgba(0, 255, 100, 0.25);
+
+border-radius: 20px;
+
+box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.70),
+    0 0 40px rgba(0, 255, 100, 0.05);
+
+backdrop-filter: blur(15px);
+
+
+}
+
+/* =========================================
+CARD TITLE
+========================================= */
+
+.phishing-card-title {
+display: flex;
+
+
+align-items: center;
+
+gap: 18px;
+
+margin-bottom: 30px;
+
+
+}
+
+/* =========================================
+SEARCH ICON
+========================================= */
+
+.phishing-title-icon {
+width: 58px;
+height: 58px;
+
+
+flex-shrink: 0;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 14px;
+
+background: rgba(0, 255, 100, 0.08);
+
+border: 1px solid rgba(0, 255, 100, 0.20);
+
+color: #00ff66;
+
+font-size: 24px;
+
+box-shadow:
+    0 0 20px rgba(0, 255, 100, 0.08);
+
+
+}
+
+/* =========================================
+CARD HEADING
+========================================= */
+
+.phishing-card-title h2 {
+margin-bottom: 6px;
+
+
+color: #ffffff;
+
+font-size: 24px;
+
+font-weight: 700;
+
+}
+
+/* =========================================
+CARD DESCRIPTION
+========================================= */
+
+.phishing-card-title p {
+color: #91ad99;
+
+
+font-size: 14px;
+
+line-height: 1.6;
+
+
+}
+
+/* =========================================
+LABEL
+========================================= */
+
+.phishing-card label {
+display: block;
+
+margin-bottom: 10px;
+
+color: #dcefe1;
+
+font-size: 14px;
+
+font-weight: 600;
+
+}
+
+/* =========================================
+URL INPUT
+========================================= */
+
+.phishing-input-wrapper {
+width: 100%;
+
+
+min-height: 58px;
+
+display: flex;
+
+align-items: center;
+
+gap: 13px;
+
+padding: 0 18px;
+
+background: #020402;
+
+border: 1px solid #194d2a;
+
+border-radius: 12px;
+
+transition: all 0.3s ease;
+
+
+}
+
+/* =========================================
+INPUT FOCUS
+========================================= */
+
+.phishing-input-wrapper:focus-within {
+border-color: #00ff66;
+
+box-shadow:
+    0 0 15px rgba(0, 255, 100, 0.18),
+    inset 0 0 15px rgba(0, 255, 100, 0.04);
+
+
+}
+
+/* =========================================
+LINK ICON
+========================================= */
+
+.phishing-input-wrapper svg {
+flex-shrink: 0;
+
+
+color: #00ff66;
+
+font-size: 18px;
+
+}
+
+/* =========================================
+INPUT
+========================================= */
+
+.phishing-input-wrapper input {
+width: 100%;
+
+
+height: 55px;
+
+padding: 0 5px;
+
+border: none;
+
+outline: none;
+
+background: transparent;
+
+color: #ffffff;
+
+font-size: 15px;
+
+
+}
+
+/* =========================================
+PLACEHOLDER
+========================================= */
+
+.phishing-input-wrapper input::placeholder {
+color: #55705d;
+opacity: 1;
+
+
+}
+
+/* =========================================
+SCAN BUTTON
+========================================= */
+
+.phishing-scan-btn {
+width: 100%;
+
+
+min-height: 56px;
+
+margin-top: 22px;
+
+padding: 15px 20px;
+
+border: none;
+
+border-radius: 12px;
+
+background: linear-gradient(
+    135deg,
+    #00a83b,
+    #00ff66
+);
+
+color: #000000;
+
+font-size: 16px;
+
+font-weight: 700;
+
+cursor: pointer;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+gap: 10px;
+
+transition: all 0.3s ease;
+
+box-shadow:
+    0 8px 25px rgba(0, 255, 100, 0.18);
+
+
+}
+
+/* =========================================
+BUTTON HOVER
+========================================= */
+
+.phishing-scan-btn:hover {
+transform: translateY(-2px);
+
+
+box-shadow:
+    0 12px 35px rgba(0, 255, 100, 0.35);
+
+
+}
+
+/* =========================================
+BUTTON ACTIVE
+========================================= */
+
+.phishing-scan-btn:active {
+transform: translateY(0);
+}
+
+/* =========================================
+DISABLED
+========================================= */
+
+.phishing-scan-btn:disabled {
+opacity: 0.6;
+
+
+cursor: not-allowed;
+
+transform: none;
+
+
+}
+
+/* =========================================
+LOADING SPINNER
+========================================= */
+
+.scan-spinner {
+width: 19px;
+height: 19px;
+
+
+border: 2px solid rgba(0, 0, 0, 0.30);
+
+border-top-color: #000000;
+
+border-radius: 50%;
+
+animation: scanSpin 0.8s linear infinite;
+
+}
+
+@keyframes scanSpin {
+
+from {
+    transform: rotate(0deg);
+}
+
+to {
+    transform: rotate(360deg);
+}
+
+
+}
+
+/* =========================================
+ERROR
+========================================= */
+
+.phishing-error {
+width: 100%;
+
+margin-top: 20px;
+
+padding: 14px 16px;
+
+display: flex;
+
+align-items: center;
+
+gap: 10px;
+
+border-radius: 10px;
+
+background: rgba(255, 50, 60, 0.08);
+
+border: 1px solid rgba(255, 50, 60, 0.30);
+
+color: #ff707a;
+
+font-size: 14px;
+
+
+}
+
+/* =========================================
+RESULT CARD
+========================================= */
+
+.phishing-result {
+width: 100%;
+
+
+margin-top: 30px;
+
+padding: 32px;
+
+background: rgba(2, 12, 5, 0.98);
+
+border: 1px solid rgba(0, 255, 100, 0.25);
+
+border-radius: 20px;
+
+box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.60),
+    0 0 40px rgba(0, 255, 100, 0.05);
+
+animation: resultAppear 0.4s ease;
+
+
+}
+
+@keyframes resultAppear {
+
+
+from {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+}
+
+/* =========================================
+RESULT HEADER
+========================================= */
+
+.phishing-result-header {
+display: flex;
+
+
+align-items: center;
+
+gap: 12px;
+
+margin-bottom: 25px;
+
+color: #00ff66;
+
+
+}
+
+.phishing-result-header svg {
+font-size: 25px;
+}
+
+.phishing-result-header h2 {
+color: #ffffff;
+
+font-size: 24px;
+
+font-weight: 700;
+
+
+}
+
+/* =========================================
+RESULT GRID
+========================================= */
+
+.phishing-result-grid {
+width: 100%;
+
+
+display: grid;
+
+grid-template-columns: repeat(4, 1fr);
+
+gap: 15px;
+
+
+}
+
+/* =========================================
+RESULT BOX
+========================================= */
+
+.phishing-result-box {
+min-height: 105px;
+
+
+padding: 18px;
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+gap: 9px;
+
+background: #030b05;
+
+border: 1px solid #174d2a;
+
+border-radius: 12px;
+
+transition: all 0.3s ease;
+
+
+}
+
+.phishing-result-box:hover {
+transform: translateY(-3px);
+
+border-color: rgba(0, 255, 100, 0.40);
+
+box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.40),
+    0 0 15px rgba(0, 255, 100, 0.06);
+
+}
+
+/* =========================================
+RESULT LABEL
+========================================= */
+
+.phishing-result-box span {
+color: #71917a;
+
+font-size: 12px;
+
+font-weight: 600;
+
+text-transform: uppercase;
+
+letter-spacing: 0.5px;
+
+}
+
+/* =========================================
+RESULT VALUE
+========================================= */
+
+.phishing-result-box strong {
+color: #ffffff;
+font-size: 21px;
+
+font-weight: 700;
+
+word-break: break-word;
+
+}
+
+/* =========================================
+URL
+========================================= */
+
+.url-result {
+color: #00ff66 !important;
+font-size: 13px !important;
+
+line-height: 1.5;
+
+word-break: break-all;
+
+
+}
+
+/* =========================================
+RISK COLORS
+========================================= */
+
+.phishing-risk-safe {
+color: #00ff66 !important;
+}
+
+.phishing-risk-low {
+color: #5cff9a !important;
+}
+
+.phishing-risk-medium {
+color: #ffe066 !important;
+}
+
+.phishing-risk-high {
+color: #ff9f43 !important;
+}
+
+.phishing-risk-critical {
+color: #ff4757 !important;
+}
+
+/* =========================================
+STATUS BOX
+========================================= */
+
+.phishing-status {
+width: 100%;
+
+
+margin-top: 25px;
+
+padding: 20px;
+
+display: flex;
+
+align-items: center;
+
+gap: 18px;
+
+border-radius: 14px;
+
+}
+
+/* =========================================
+STATUS ICON
+========================================= */
+
+.phishing-status svg {
+flex-shrink: 0;
+
+font-size: 29px;
+
+
+}
+
+/* =========================================
+STATUS HEADING
+========================================= */
+
+.phishing-status h3 {
+margin-bottom: 5px;
+
+
+font-size: 18px;
+
+
+}
+
+/* =========================================
+STATUS TEXT
+========================================= */
+
+.phishing-status p {
+color: #a3b9aa;
+
+
+font-size: 14px;
+
+line-height: 1.6;
+
+
+}
+
+/* =========================================
+DANGER
+========================================= */
+
+.danger-status {
+background: rgba(255, 50, 60, 0.07);
+
+
+border: 1px solid rgba(255, 50, 60, 0.25);
+
+color: #ff6575;
+
+
+}
+
+/* =========================================
+SAFE
+========================================= */
+
+.safe-status {
+background: rgba(0, 255, 100, 0.06);
+
+
+border: 1px solid rgba(0, 255, 100, 0.25);
+
+color: #00ff66;
+
+
+}
+
+/* =========================================
+EVIDENCE SECTION
+========================================= */
+
+.phishing-section {
+width: 100%;
+
+
+margin-top: 25px;
+
+padding: 23px;
+
+background: #020803;
+
+border: 1px solid #164b28;
+
+border-radius: 14px;
+
+
+}
+
+/* =========================================
+EVIDENCE HEADING
+========================================= */
+
+.phishing-section h3 {
+margin-bottom: 15px;
+
+
+color: #00ff66;
+
+font-size: 17px;
+
+font-weight: 700;
+
+
+}
+
+/* =========================================
+EVIDENCE LIST
+========================================= */
+
+.phishing-section ul {
+padding-left: 20px;
+}
+
+/* =========================================
+EVIDENCE ITEM
+========================================= */
+
+.phishing-section li {
+margin-bottom: 10px;
+
+
+color: #bdd2c2;
+
+font-size: 14px;
+
+line-height: 1.6;
+
+
+}
+
+/* =========================================
+LAST ITEM
+========================================= */
+
+.phishing-section li:last-child {
+margin-bottom: 0;
+}
+
+/* =========================================
+EMPTY TEXT
+========================================= */
+
+.phishing-section > p {
+color: #91a998;
+
+
+font-size: 14px;
+
+line-height: 1.6;
+
+}
+
+/* =========================================
+RECOMMENDED ACTION
+========================================= */
+
+.phishing-action {
+width: 100%;
+
+
+margin-top: 25px;
+
+padding: 23px;
+
+background: rgba(0, 255, 100, 0.035);
+
+border: 1px solid rgba(0, 255, 100, 0.22);
+
+border-radius: 14px;
+
+
+}
+
+/* =========================================
+ACTION HEADING
+========================================= */
+
+.phishing-action h3 {
+margin-bottom: 12px;
+
+color: #00ff66;
+
+font-size: 17px;
+
+font-weight: 700;
+
+}
+
+/* =========================================
+ACTION TEXT
+========================================= */
+
+.phishing-action p {
+color: #bdd2c2;
+
+
+font-size: 14px;
+
+line-height: 1.7;
+
+
+}
+
+/* =========================================
+TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+.phishing-page {
+    padding: 60px 20px 80px;
+}
+
+.phishing-header h1 {
+    font-size: 38px;
+}
+
+.phishing-result-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+}
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+
+.phishing-page {
+    padding: 45px 15px 70px;
+}
+
+.phishing-header {
+    margin-bottom: 35px;
+}
+
+.phishing-shield {
+    width: 75px;
+    height: 75px;
+
+    font-size: 32px;
+
+    margin-bottom: 20px;
+}
+
+.phishing-header h1 {
+    font-size: 30px;
+
+    line-height: 1.25;
+}
+
+.phishing-header p {
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.phishing-card {
+    padding: 23px;
+
+    border-radius: 16px;
+}
+
+.phishing-card-title {
+    gap: 13px;
+
+    align-items: flex-start;
+}
+
+.phishing-title-icon {
+    width: 48px;
+    height: 48px;
+
+    font-size: 20px;
+}
+
+.phishing-card-title h2 {
+    font-size: 20px;
+}
+
+.phishing-card-title p {
+    font-size: 13px;
+}
+
+.phishing-result {
+    padding: 23px;
+
+    border-radius: 16px;
+}
+
+.phishing-result-header h2 {
+    font-size: 20px;
+}
+
+.phishing-result-grid {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+}
+
+.phishing-status {
+    align-items: flex-start;
+
+    padding: 17px;
+}
+
+.phishing-section,
+.phishing-action {
+    padding: 18px;
+}
+
+
+}
+
+/* =========================================
+VERY SMALL SCREENS
+========================================= */
+
+@media (max-width: 380px) {
+
+
+.phishing-header h1 {
+    font-size: 27px;
+}
+
+.phishing-card {
+    padding: 18px;
+}
+
+.phishing-result {
+    padding: 18px;
+}
+
+.phishing-input-wrapper {
+    padding: 0 12px;
+}
+
+
+}

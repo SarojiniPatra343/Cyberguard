@@ -1,0 +1,555 @@
+
+/* =========================================
+   CYBERGUARD REGISTER PAGE
+   DARK NAVY + BLUE + GREEN GLOW
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+.register-page {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0, 110, 255, 0.15),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(0, 255, 170, 0.10),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #020617,
+            #06152d,
+            #020817
+        );
+
+    position: relative;
+    overflow: hidden;
+}
+
+.register-background-glow {
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    background: rgba(0, 140, 255, 0.08);
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    top: -150px;
+    right: -120px;
+
+    pointer-events: none;
+}
+
+/* Card */
+
+.register-card {
+    width: 100%;
+    max-width: 500px;
+
+    padding: 40px;
+
+    background: rgba(5, 18, 40, 0.94);
+
+    border: 1px solid rgba(0, 153, 255, 0.25);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(0, 120, 255, 0.08);
+
+    backdrop-filter: blur(20px);
+
+    position: relative;
+    z-index: 2;
+
+    animation: registerAppear 0.6s ease;
+}
+
+@keyframes registerAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo */
+
+.register-logo {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.register-logo-icon {
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    font-size: 29px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(0, 120, 255, 0.25),
+        rgba(0, 255, 170, 0.15)
+    );
+
+    border: 1px solid rgba(0, 180, 255, 0.3);
+
+    box-shadow:
+        0 0 25px rgba(0, 140, 255, 0.2);
+}
+
+.register-logo h1 {
+    color: #ffffff;
+
+    font-size: 25px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 5px;
+}
+
+.register-logo p {
+    color: #4ade80;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+/* Heading */
+
+.register-card h2 {
+    color: #ffffff;
+
+    text-align: center;
+
+    font-size: 27px;
+
+    margin-bottom: 8px;
+}
+
+.register-subtitle {
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+/* Form */
+
+.register-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.register-input-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.register-input-group label {
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+/* Input */
+
+.register-input-wrapper {
+    width: 100%;
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    background: #020b1c;
+
+    border: 1px solid #183252;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    transition: 0.3s;
+}
+
+.register-input-wrapper:focus-within {
+    border-color: #168cff;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 140, 255, 0.08),
+        0 0 18px rgba(22, 140, 255, 0.12);
+}
+
+.register-input-icon {
+    width: 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    color: #4ade80;
+
+    font-size: 16px;
+}
+
+.register-input-wrapper input {
+    flex: 1;
+
+    height: 100%;
+
+    padding-right: 14px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+.register-input-wrapper input::placeholder {
+    color: #475569;
+}
+
+/* Country Code */
+
+.register-country-code {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 13px;
+
+    color: #4ade80;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    border-right: 1px solid #183252;
+}
+
+/* Register Button */
+
+.register-btn {
+    height: 52px;
+
+    margin-top: 7px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #0878d1,
+        #087f71
+    );
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    transition: 0.3s;
+
+    box-shadow:
+        0 8px 25px rgba(0, 120, 255, 0.18);
+}
+
+.register-btn span {
+    font-size: 20px;
+
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 180, 160, 0.22);
+}
+
+.register-btn:hover span {
+    transform: translateX(4px);
+}
+
+/* Messages */
+
+.register-error,
+.register-success {
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+
+    font-size: 13px;
+}
+
+.register-error {
+    color: #fca5a5;
+
+    background: rgba(239, 68, 68, 0.08);
+
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.register-success {
+    color: #86efac;
+
+    background: rgba(34, 197, 94, 0.08);
+
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+/* Already Account */
+
+.already-account {
+    margin-top: 23px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.already-account span {
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+.already-account button {
+    border: none;
+
+    background: transparent;
+
+    color: #4ade80;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.already-account button:hover {
+    color: #38bdf8;
+}
+
+/* Back Home */
+
+.register-back-home {
+    display: block;
+
+    margin: 20px auto 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.register-back-home:hover {
+    color: #ffffff;
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+
+    .register-page {
+        padding: 20px 15px;
+    }
+
+    .register-card {
+        padding: 30px 22px;
+    }
+
+    .register-card h2 {
+        font-size: 24px;
+    }
+}
+
+/* =========================================
+   COUNTRY CODE + MOBILE NUMBER
+========================================= */
+
+.mobile-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+.country-select {
+    height: 48px;
+
+    padding: 0 10px;
+
+    border: 1px solid #183252;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #020b1c;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.country-select:hover {
+    border-color: #168cff;
+}
+
+.country-select:focus {
+    border-color: #168cff;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 140, 255, 0.08);
+}
+
+.country-select option {
+    background: #020b1c;
+
+    color: #ffffff;
+}
+
+.mobile-number-input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid #183252;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #020b1c;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.mobile-number-input::placeholder {
+    color: #475569;
+}
+
+.mobile-number-input:focus {
+    border-color: #168cff;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 140, 255, 0.08),
+        0 0 18px rgba(22, 140, 255, 0.12);
+}
+
+/* Mobile responsive */
+
+@media (max-width: 520px) {
+
+    .mobile-input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .country-select {
+        width: 100%;
+    }
+}
+
+

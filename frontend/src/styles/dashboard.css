@@ -1,0 +1,1023 @@
+/* =========================================================
+   CYBERGUARD DASHBOARD
+   MODERN SOC / CYBERSECURITY UI
+   BLACK + NEON GREEN THEME
+========================================================= */
+
+.dashboard-page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 50px 35px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0, 255, 102, 0.12),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #000000 0%,
+            #020d05 50%,
+            #000000 100%
+        );
+
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.dashboard-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 18px !important;
+    margin-bottom: 35px;
+}
+
+.dashboard-header-icon {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: rgba(0, 255, 102, 0.08);
+
+    border: 1px solid rgba(0, 255, 102, 0.35);
+
+    color: #00ff66;
+
+    font-size: 26px;
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 102, 0.12);
+}
+
+.dashboard-header h1 {
+    margin: 0 !important;
+
+    font-size: 30px !important;
+
+    color: #ffffff !important;
+}
+
+.dashboard-header p {
+    margin: 6px 0 0 !important;
+
+    color: #7fa88d !important;
+
+    font-size: 14px !important;
+}
+
+.refresh-btn {
+    margin-left: auto;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(0, 255, 102, 0.35);
+
+    background: rgba(0, 255, 102, 0.07);
+
+    color: #00ff66;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.refresh-btn:hover {
+    background: #00ff66;
+    color: #000000;
+
+    border-color: #00ff66;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 102, 0.3);
+}
+
+
+/* =========================================================
+   SECURITY SCORE
+========================================================= */
+
+.security-score-card {
+    width: 100%;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(5, 25, 12, 0.97),
+            rgba(0, 8, 3, 0.97)
+        );
+
+    border: 1px solid rgba(0, 255, 102, 0.22);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(0, 255, 102, 0.04);
+}
+
+.score-icon {
+    color: #00ff66;
+
+    font-size: 27px;
+
+    margin-bottom: 12px;
+}
+
+.score-content span {
+    display: block !important;
+
+    color: #83a28e;
+
+    font-size: 14px;
+}
+
+.score-content strong {
+    display: block !important;
+
+    margin-top: 6px;
+
+    font-size: 42px;
+
+    color: #ffffff;
+}
+
+.score-content p {
+    margin-top: 7px;
+
+    color: #63806d;
+
+    font-size: 13px;
+}
+
+.score-progress {
+    width: 100%;
+
+    height: 7px;
+
+    margin-top: 20px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.score-progress-fill {
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00a83d,
+            #00ff66,
+            #39ff88
+        );
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 12px rgba(0, 255, 102, 0.45);
+
+    transition: width 0.7s ease;
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.stats-grid {
+    width: 100%;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr)) !important;
+
+    gap: 18px !important;
+
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    min-width: 0;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 15px !important;
+
+    padding: 22px;
+
+    min-height: 105px;
+
+    background:
+        rgba(3, 15, 7, 0.94);
+
+    border: 1px solid rgba(0, 255, 102, 0.14);
+
+    border-radius: 15px;
+
+    transition: 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(0, 255, 102, 0.4);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(0, 255, 102, 0.05);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+
+    min-width: 48px;
+
+    display: flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+
+/* Keep different stat meanings */
+
+.stat-icon.blue {
+    color: #00ff66;
+    background: rgba(0, 255, 102, 0.10);
+}
+
+.stat-icon.red {
+    color: #ff5268;
+    background: rgba(255, 60, 80, 0.12);
+}
+
+.stat-icon.green {
+    color: #00ff66;
+    background: rgba(0, 255, 102, 0.10);
+}
+
+.stat-icon.cyan {
+    color: #39ff88;
+    background: rgba(0, 255, 102, 0.10);
+}
+
+.stat-card span {
+    display: block !important;
+
+    color: #789685;
+
+    font-size: 13px;
+}
+
+.stat-card strong {
+    display: block !important;
+
+    margin-top: 5px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.dashboard-section {
+    width: 100%;
+
+    margin-top: 24px;
+
+    padding: 26px;
+
+    background:
+        rgba(2, 12, 5, 0.90);
+
+    border:
+        1px solid rgba(0, 255, 102, 0.13);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+.section-heading {
+    width: 100%;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 10px !important;
+
+    margin-bottom: 22px;
+}
+
+.section-heading svg {
+    color: #00ff66;
+
+    font-size: 19px;
+}
+
+.section-heading h2 {
+    margin: 0 !important;
+
+    font-size: 21px !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   ANALYSIS OVERVIEW
+========================================================= */
+
+.analysis-grid {
+    width: 100%;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 18px !important;
+}
+
+.analysis-card {
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 25px;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    background:
+        rgba(0, 8, 3, 0.88);
+
+    border:
+        1px solid rgba(0, 255, 102, 0.14);
+
+    border-radius: 14px;
+
+    transition: 0.25s ease;
+}
+
+.analysis-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(0, 255, 102, 0.4);
+
+    background:
+        rgba(3, 20, 8, 0.95);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(0, 255, 102, 0.06);
+}
+
+.analysis-card svg {
+    display: block !important;
+
+    margin: 0 auto 13px !important;
+
+    color: #00ff66;
+
+    font-size: 27px;
+}
+
+.analysis-card span {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #86a291;
+
+    font-size: 14px;
+}
+
+.analysis-card strong {
+    display: block !important;
+
+    margin-top: 8px !important;
+
+    color: #ffffff;
+
+    font-size: 30px;
+}
+
+
+/* =========================================================
+   THREAT RISK LEVELS
+========================================================= */
+
+.risk-grid {
+    width: 100%;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr)) !important;
+
+    gap: 16px !important;
+}
+
+.risk-card {
+    width: 100%;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    padding: 23px;
+
+    text-align: center;
+
+    background:
+        rgba(2, 10, 4, 0.90);
+
+    border-radius: 13px;
+
+    transition: 0.25s ease;
+}
+
+.risk-card:hover {
+    transform: translateY(-4px);
+}
+
+.risk-card span {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color: #8aa395;
+
+    font-size: 14px;
+}
+
+.risk-card strong {
+    display: block !important;
+
+    margin-top: 8px !important;
+
+    font-size: 30px;
+}
+
+
+/* =========================================================
+   RISK COLORS - PRESERVED
+========================================================= */
+
+.risk-card.critical {
+    border: 1px solid rgba(255, 50, 70, 0.3);
+}
+
+.risk-card.critical strong {
+    color: #ff4d64;
+}
+
+.risk-card.high {
+    border: 1px solid rgba(255, 130, 40, 0.3);
+}
+
+.risk-card.high strong {
+    color: #ff994d;
+}
+
+.risk-card.medium {
+    border: 1px solid rgba(255, 205, 40, 0.3);
+}
+
+.risk-card.medium strong {
+    color: #ffd34d;
+}
+
+.risk-card.low {
+    border: 1px solid rgba(0, 255, 102, 0.3);
+}
+
+.risk-card.low strong {
+    color: #00ff66;
+}
+
+
+/* =========================================================
+   RECENT ACTIVITY
+========================================================= */
+
+.activity-table {
+    width: 100%;
+
+    display: block;
+
+    overflow-x: auto;
+}
+
+.activity-header {
+    width: 100%;
+
+    min-width: 760px;
+
+    display: grid !important;
+
+    grid-template-columns:
+        100px
+        minmax(220px, 1fr)
+        110px
+        80px
+        100px !important;
+
+    gap: 15px !important;
+
+    align-items: center !important;
+
+    padding: 14px 18px;
+
+    color: #718b7b;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.activity-row {
+    width: 100%;
+
+    min-width: 760px;
+
+    display: grid !important;
+
+    grid-template-columns:
+        100px
+        minmax(220px, 1fr)
+        110px
+        80px
+        100px !important;
+
+    gap: 15px !important;
+
+    align-items: center !important;
+
+    padding: 17px 18px;
+
+    color: #d5e2d9;
+
+    font-size: 14px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    transition: 0.2s ease;
+}
+
+.activity-row:hover {
+    background:
+        rgba(0, 255, 102, 0.035);
+}
+
+.activity-type {
+    display: block !important;
+
+    color: #00ff66;
+
+    font-weight: 700;
+}
+
+.activity-risk {
+    display: block !important;
+
+    font-weight: 700;
+}
+
+
+/* Risk colors preserved */
+
+.activity-risk.risk-critical {
+    color: #ff5267;
+}
+
+.activity-risk.risk-high {
+    color: #ff994d;
+}
+
+.activity-risk.risk-medium {
+    color: #ffd34d;
+}
+
+.activity-risk.risk-low {
+    color: #00ff66;
+}
+
+.activity-risk.risk-safe {
+    color: #00ff66;
+}
+
+
+/* =========================================================
+   ACTIVITY STATUS
+========================================================= */
+
+.activity-status {
+    display: inline-block !important;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+.activity-status.threat {
+    color: #ff6577;
+
+    background:
+        rgba(255, 60, 80, 0.09);
+}
+
+.activity-status.safe {
+    color: #00ff66;
+
+    background:
+        rgba(0, 255, 102, 0.08);
+}
+
+
+/* =========================================================
+   DATABASE STATUS
+========================================================= */
+
+.dashboard-database-status {
+    width: 100%;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 9px !important;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(0, 255, 102, 0.04);
+
+    border:
+        1px solid rgba(0, 255, 102, 0.16);
+
+    color: #83d9a2;
+
+    font-size: 13px;
+}
+
+.dashboard-database-status svg {
+    color: #00ff66;
+}
+
+.database-online {
+    color: #00ff66;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.dashboard-loading {
+    min-height: 80vh;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    text-align: center;
+}
+
+.loading-icon {
+    color: #00ff66;
+
+    font-size: 38px;
+
+    animation: dashboard-spin 1s linear infinite;
+}
+
+.dashboard-loading h2 {
+    margin-top: 18px;
+}
+
+.dashboard-loading p {
+    margin-top: 7px;
+
+    color: #718b7b;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.dashboard-error {
+    min-height: 70vh;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    text-align: center;
+}
+
+.dashboard-error > svg {
+    color: #ff5267;
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+.dashboard-error p {
+    margin-top: 8px;
+
+    color: #81998b;
+}
+
+.dashboard-retry {
+    margin-top: 20px;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 8px;
+
+    padding: 11px 20px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00b83d,
+            #00ff66
+        );
+
+    color: #000000;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition: all 0.25s ease;
+}
+
+.dashboard-retry:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 102, 0.35);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .risk-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .dashboard-page {
+        padding: 30px 15px;
+    }
+
+    .dashboard-header {
+        flex-wrap: wrap !important;
+    }
+
+    .dashboard-header h1 {
+        font-size: 23px !important;
+    }
+
+    .refresh-btn {
+        width: 100%;
+
+        margin-left: 0;
+
+        margin-top: 5px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .risk-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .dashboard-section {
+        padding: 19px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .risk-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dashboard-header-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 20px !important;
+    }
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes dashboard-spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   THREAT HISTORY BUTTON
+========================================================= */
+
+.history-dashboard-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 20px;
+
+    border: 1px solid rgba(0, 255, 102, 0.35);
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 255, 102, 0.10),
+            rgba(0, 120, 45, 0.18)
+        );
+
+    color: #00ff66;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.history-dashboard-btn:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #00ff66,
+            #00b83d
+        );
+
+    color: #000000;
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 102, 0.35);
+
+    border-color: #00ff66;
+}
+
+.history-dashboard-btn svg {
+    font-size: 16px;
+}

@@ -1,0 +1,830 @@
+/* =========================================
+   CYBERGUARD - DIGITAL PROTECTION CENTER
+   BLACK + NEON GREEN THEME
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   MAIN PAGE - BLACK + GREEN
+========================================= */
+
+.protect-page {
+    min-height: 100vh;
+
+    padding: 70px 20px 100px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0, 255, 80, 0.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 0% 45%,
+            rgba(0, 255, 100, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 100% 70%,
+            rgba(0, 255, 80, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #000000 0%,
+            #001a08 30%,
+            #003d12 50%,
+            #001a08 70%,
+            #000000 100%
+        );
+
+    color: #ffffff;
+
+    overflow-x: hidden;
+
+    position: relative;
+}
+
+
+/* GREEN GLOW OVERLAY */
+
+.protect-page::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(0, 255, 100, 0.04) 50%,
+            transparent 100%
+        );
+
+    box-shadow:
+        inset 0 0 120px rgba(0, 255, 80, 0.08);
+
+    z-index: 0;
+}
+
+
+.protect-container {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.protect-header {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+
+.protect-shield {
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(0, 255, 100, 0.08);
+
+    border: 1px solid rgba(0, 255, 100, 0.65);
+
+    color: #00ff66;
+
+    font-size: 40px;
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 80, 0.35),
+        0 0 60px rgba(0, 255, 80, 0.12);
+
+    animation: protectPulse 3s infinite;
+}
+
+
+@keyframes protectPulse {
+
+    0% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 20px rgba(0, 255, 80, 0.25);
+    }
+
+    50% {
+        transform: scale(1.06);
+
+        box-shadow:
+            0 0 40px rgba(0, 255, 80, 0.55),
+            0 0 80px rgba(0, 255, 80, 0.2);
+    }
+
+    100% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 20px rgba(0, 255, 80, 0.25);
+    }
+}
+
+
+.protect-header h1 {
+    margin-bottom: 15px;
+
+    color: #00ff66;
+
+    font-size: 44px;
+
+    font-weight: 800;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 80, 0.5),
+        0 0 30px rgba(0, 255, 80, 0.25);
+}
+
+
+.protect-header p {
+    max-width: 760px;
+
+    margin: auto;
+
+    color: #b9d9c2;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   PROTECTION STATUS
+========================================= */
+
+.protection-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 27px;
+
+    margin-bottom: 45px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 20, 8, 0.97),
+            rgba(0, 45, 15, 0.95)
+        );
+
+    border: 1px solid rgba(0, 255, 80, 0.35);
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 80, 0.06);
+
+    transition: 0.3s;
+}
+
+
+.protection-on {
+    border: 1px solid rgba(0, 255, 80, 0.55);
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 80, 0.12),
+        inset 0 0 25px rgba(0, 255, 80, 0.03);
+}
+
+
+.protection-off {
+    border: 1px solid rgba(255, 71, 87, 0.3);
+}
+
+
+/* =========================================
+   STATUS ICON
+========================================= */
+
+.protection-status-icon {
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(0, 255, 80, 0.1);
+
+    color: #00ff66;
+
+    font-size: 27px;
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 80, 0.1);
+}
+
+
+.protection-off .protection-status-icon {
+    background: rgba(255, 71, 87, 0.08);
+
+    color: #ff5968;
+}
+
+
+/* =========================================
+   STATUS CONTENT
+========================================= */
+
+.protection-status-content {
+    flex: 1;
+}
+
+
+.protection-status-content span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #78a887;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.protection-status-content h2 {
+    margin-bottom: 6px;
+
+    color: #ffffff;
+
+    font-size: 22px;
+}
+
+
+.protection-status-content p {
+    color: #9fc2aa;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   PROTECTION BUTTON
+========================================= */
+
+.protection-toggle {
+    padding: 12px 18px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.toggle-on {
+    background: rgba(0, 255, 80, 0.08);
+
+    border: 1px solid rgba(0, 255, 80, 0.5);
+
+    color: #00ff66;
+
+    box-shadow:
+        0 0 15px rgba(0, 255, 80, 0.05);
+}
+
+
+.toggle-on:hover {
+    background: rgba(0, 255, 80, 0.18);
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 80, 0.25);
+
+    transform: scale(1.05);
+}
+
+
+.toggle-off {
+    background: rgba(255, 71, 87, 0.08);
+
+    border: 1px solid rgba(255, 71, 87, 0.35);
+
+    color: #ff5968;
+}
+
+
+.toggle-off:hover {
+    background: rgba(255, 71, 87, 0.16);
+
+    box-shadow:
+        0 0 25px rgba(255, 71, 87, 0.2);
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.protection-section {
+    margin-bottom: 35px;
+}
+
+
+.protection-section-heading {
+    margin-bottom: 25px;
+}
+
+
+.protection-section-heading h2 {
+    margin-bottom: 7px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+}
+
+
+.protection-section-heading p {
+    color: #86a98f;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   PROTECTION GRID
+========================================= */
+
+.protection-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================
+   PROTECTION CARD
+========================================= */
+
+.protection-card {
+    padding: 27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 20, 8, 0.98),
+            rgba(0, 35, 12, 0.96)
+        );
+
+    border: 1px solid rgba(0, 255, 80, 0.25);
+
+    border-radius: 17px;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+.protection-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(0, 255, 80, 0.65);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 255, 80, 0.12);
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.protection-icon {
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(0, 255, 80, 0.1);
+
+    color: #00ff66;
+
+    font-size: 23px;
+
+    border: 1px solid rgba(0, 255, 80, 0.25);
+
+    box-shadow:
+        0 0 18px rgba(0, 255, 80, 0.08);
+}
+
+
+/* =========================================
+   CARD TITLE
+========================================= */
+
+.protection-card h3 {
+    margin-bottom: 10px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+}
+
+
+/* =========================================
+   CARD DESCRIPTION
+========================================= */
+
+.protection-card p {
+    min-height: 65px;
+
+    margin-bottom: 20px;
+
+    color: #91b29a;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CARD BUTTON
+========================================= */
+
+.protection-card button {
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(0, 255, 80, 0.45);
+
+    background: rgba(0, 255, 80, 0.07);
+
+    color: #00ff66;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.protection-card button:hover {
+    background: #00c853;
+
+    color: #000000;
+
+    border-color: #00ff66;
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 80, 0.3);
+}
+
+
+/* =========================================
+   DISABLED
+========================================= */
+
+.protection-disabled {
+    opacity: 0.4;
+
+    filter: grayscale(30%);
+}
+
+
+.protection-disabled:hover {
+    transform: none;
+
+    box-shadow: none;
+
+    border-color: rgba(0, 255, 80, 0.25);
+}
+
+
+.protection-disabled button {
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   OVERVIEW
+========================================= */
+
+.security-overview {
+    padding: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 18, 7, 0.98),
+            rgba(0, 40, 14, 0.96)
+        );
+
+    border: 1px solid rgba(0, 255, 80, 0.3);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 80, 0.05);
+}
+
+
+.overview-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+    color: #00ff66;
+}
+
+
+.overview-header h2 {
+    color: #ffffff;
+
+    font-size: 22px;
+}
+
+
+/* =========================================
+   OVERVIEW GRID
+========================================= */
+
+.overview-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+
+.overview-box {
+    padding: 18px;
+
+    background:
+        rgba(0, 10, 4, 0.95);
+
+    border: 1px solid rgba(0, 255, 80, 0.25);
+
+    border-radius: 12px;
+
+    transition: 0.3s;
+}
+
+
+.overview-box:hover {
+    border-color: rgba(0, 255, 80, 0.5);
+
+    box-shadow:
+        0 0 18px rgba(0, 255, 80, 0.08);
+}
+
+
+.overview-box span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #71977c;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+}
+
+
+.overview-box strong {
+    font-size: 15px;
+}
+
+
+.enabled {
+    color: #00ff66;
+}
+
+
+.disabled {
+    color: #ff5968;
+}
+
+
+.high {
+    color: #00ff66;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.protection-message {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background: rgba(0, 255, 80, 0.07);
+
+    border: 1px solid rgba(0, 255, 80, 0.4);
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 80, 0.06);
+
+    animation: messageIn 0.4s ease;
+}
+
+
+@keyframes messageIn {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+.protection-message svg {
+    color: #00ff66;
+
+    font-size: 26px;
+}
+
+
+.protection-message h3 {
+    margin-bottom: 5px;
+
+    color: #00ff66;
+
+    font-size: 17px;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 80, 0.25);
+}
+
+
+.protection-message p {
+    color: #9fc2aa;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 850px) {
+
+    .protection-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .overview-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .protect-header h1 {
+        font-size: 38px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .protect-page {
+        padding: 45px 15px 70px;
+    }
+
+    .protect-shield {
+        width: 75px;
+        height: 75px;
+
+        font-size: 32px;
+    }
+
+    .protect-header h1 {
+        font-size: 30px;
+    }
+
+    .protect-header p {
+        font-size: 14px;
+    }
+
+    .protection-status {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+
+        padding: 20px;
+    }
+
+    .protection-status-content {
+        min-width: 0;
+    }
+
+    .protection-toggle {
+        margin-left: 80px;
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .security-overview {
+        padding: 22px;
+    }
+}

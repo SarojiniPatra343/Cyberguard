@@ -1,0 +1,575 @@
+/* =========================================
+   CYBERGUARD ANALYZER
+   BLACK + NEON GREEN GLOW
+========================================= */
+
+.analyzer-page {
+    min-height: 100vh;
+
+    padding: 90px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0, 255, 80, 0.20),
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(0, 255, 100, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(0, 255, 80, 0.10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #000000 0%,
+            #001a08 45%,
+            #000000 100%
+        );
+
+    color: white;
+}
+
+
+/* =========================================
+   WRAPPER
+========================================= */
+
+.analyzer-wrapper {
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+/* ================= HEADER ================= */
+
+.analyzer-header {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+
+.analyzer-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #00ff66;
+
+    font-size: 34px;
+
+    background: rgba(0, 255, 80, 0.08);
+
+    border: 1px solid rgba(0, 255, 80, 0.6);
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 80, 0.25),
+        0 0 60px rgba(0, 255, 80, 0.08);
+
+    animation: analyzerPulse 3s infinite;
+}
+
+
+@keyframes analyzerPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 20px rgba(0, 255, 80, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 45px rgba(0, 255, 80, 0.55),
+            0 0 80px rgba(0, 255, 80, 0.15);
+    }
+}
+
+
+.analyzer-header h1 {
+    font-size: 42px;
+
+    margin-bottom: 15px;
+
+    color: #00ff66;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 80, 0.45),
+        0 0 30px rgba(0, 255, 80, 0.18);
+}
+
+
+.analyzer-header p {
+    color: #a7c9ae;
+
+    font-size: 17px;
+}
+
+
+/* ================= ANALYZER CARD ================= */
+
+.analyzer-card {
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 15, 6, 0.98),
+            rgba(0, 35, 12, 0.96)
+        );
+
+    border: 1px solid rgba(0, 255, 80, 0.35);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(0, 255, 80, 0.05);
+}
+
+
+/* ================= TYPE BUTTONS ================= */
+
+.type-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+
+.type-buttons button {
+    flex: 1;
+
+    padding: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    background: #000c03;
+
+    color: #8cad94;
+
+    border: 1px solid #164d27;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.type-buttons button:hover {
+    border-color: #00ff66;
+
+    color: #00ff66;
+
+    box-shadow:
+        0 0 18px rgba(0, 255, 80, 0.08);
+}
+
+
+.type-buttons .active-type {
+    color: #00ff66;
+
+    border-color: #00ff66;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 255, 80, 0.16),
+            rgba(0, 180, 60, 0.08)
+        );
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 80, 0.15),
+        inset 0 0 15px rgba(0, 255, 80, 0.04);
+}
+
+
+/* ================= INPUT ================= */
+
+.analyzer-card label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-weight: 600;
+
+    color: #d9f0dd;
+}
+
+
+.analyzer-card textarea {
+    width: 100%;
+
+    min-height: 150px;
+
+    padding: 18px;
+
+    resize: vertical;
+
+    background: #000b03;
+
+    color: white;
+
+    border: 1px solid #164d27;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    transition: 0.3s;
+}
+
+
+.analyzer-card textarea:focus {
+    border-color: #00ff66;
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 80, 0.15),
+        inset 0 0 15px rgba(0, 255, 80, 0.03);
+}
+
+
+.analyzer-card textarea::placeholder {
+    color: #587461;
+}
+
+
+/* ================= ANALYZE BUTTON ================= */
+
+.analyze-main-btn {
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    color: #000000;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00ff66,
+            #00b83f
+        );
+
+    transition: 0.3s;
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 80, 0.12);
+}
+
+
+.analyze-main-btn:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #39ff7a,
+            #00d94f
+        );
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 80, 0.4);
+}
+
+
+.analyze-main-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* ================= ERROR ================= */
+
+.analyzer-error {
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    color: #ffb4b4;
+
+    background: rgba(255, 60, 60, 0.08);
+
+    border: 1px solid rgba(255, 60, 60, 0.3);
+}
+
+
+/* ================= RESULT ================= */
+
+.analysis-result {
+    margin-top: 35px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 15, 6, 0.98),
+            rgba(0, 30, 10, 0.96)
+        );
+
+    border: 1px solid rgba(0, 255, 80, 0.35);
+
+    border-radius: 18px;
+
+    animation: resultAppear 0.5s ease;
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 80, 0.05);
+}
+
+
+@keyframes resultAppear {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================= RESULT TITLE ================= */
+
+.result-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+    color: #00ff66;
+
+    text-shadow:
+        0 0 8px rgba(0, 255, 80, 0.25);
+}
+
+
+.result-title h2 {
+    color: white;
+}
+
+
+/* ================= RESULT GRID ================= */
+
+.result-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+
+.result-box {
+    padding: 20px;
+
+    background:
+        rgba(0, 12, 4, 0.95);
+
+    border: 1px solid #164d27;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+
+.result-box:hover {
+    border-color: rgba(0, 255, 80, 0.55);
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 80, 0.08);
+}
+
+
+.result-box span {
+    display: block;
+
+    color: #73927b;
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+}
+
+
+.result-box strong {
+    font-size: 20px;
+
+    color: #e0f4e4;
+}
+
+
+/* ================= RISK COLORS ================= */
+
+.risk-safe {
+    color: #00ff66 !important;
+}
+
+
+.risk-low {
+    color: #76e5a9 !important;
+}
+
+
+.risk-medium {
+    color: #ffd166 !important;
+}
+
+
+.risk-high {
+    color: #ff8c69 !important;
+}
+
+
+.risk-critical {
+    color: #ff4d6d !important;
+}
+
+
+/* ================= EVIDENCE ================= */
+
+.result-section {
+    margin-top: 30px;
+
+    padding: 22px;
+
+    background:
+        rgba(0, 12, 4, 0.95);
+
+    border-radius: 12px;
+
+    border: 1px solid #164d27;
+}
+
+
+.result-section h3 {
+    margin-bottom: 15px;
+
+    color: #00ff66;
+
+    text-shadow:
+        0 0 8px rgba(0, 255, 80, 0.2);
+}
+
+
+.result-section ul {
+    padding-left: 22px;
+}
+
+
+.result-section li {
+    color: #b7d4bd;
+
+    margin-bottom: 8px;
+
+    line-height: 1.5;
+}
+
+
+.result-section li::marker {
+    color: #00ff66;
+}
+
+
+/* ================= ACTION ================= */
+
+.action-section p {
+    color: #bcd4c1;
+
+    line-height: 1.7;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    .analyzer-header h1 {
+        font-size: 30px;
+    }
+
+    .analyzer-card {
+        padding: 22px;
+    }
+
+    .type-buttons {
+        flex-direction: column;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
