@@ -35,6 +35,7 @@ test_database_connection()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://cyberguard-frontend-3o3d.onrender.com",
         "http://localhost:5173",
         "http://localhost:5174",
         "http://127.0.0.1:5173",
