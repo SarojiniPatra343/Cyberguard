@@ -1,42 +1,48 @@
 import React, { useState } from "react";
 import "../styles/image-analyzer.css";
 
+const API_URL =
+    "https://cyberguard-backend-dewc.onrender.com/api";
+
 const ImageAnalyzer = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    /* =========================================
-       FILE SELECTION
-    ========================================= */
+    // =========================================================
+    // SELECT IMAGE
+    // =========================================================
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0];
+        const file = event.target.files?.[0];
 
         setError("");
         setResult(null);
 
         if (!file) {
+            setSelectedFile(null);
+            setPreview(null);
             return;
         }
 
         if (!file.type.startsWith("image/")) {
             setError("Please select a valid image file.");
+            setSelectedFile(null);
+            setPreview(null);
             return;
         }
 
         setSelectedFile(file);
 
-        const imageUrl = URL.createObjectURL(file);
-        setPreview(imageUrl);
+        const imageURL = URL.createObjectURL(file);
+        setPreview(imageURL);
     };
 
-
-    /* =========================================
-       IMAGE ANALYSIS
-    ========================================= */
+    // =========================================================
+    // ANALYZE IMAGE
+    // =========================================================
 
     const handleAnalyze = async () => {
         if (!selectedFile) {
@@ -54,152 +60,162 @@ const ImageAnalyzer = () => {
             formData.append("file", selectedFile);
 
             const response = await fetch(
-    "http://127.0.0.1:8000/api/image/analyze",
+                `${API_URL}/image/detect`,
                 {
                     method: "POST",
                     body: formData,
                 }
             );
 
-            const data = await response.json();
+            let data;
+
+            try {
+                data = await response.json();
+            } catch {
+                data = {};
+            }
 
             if (!response.ok) {
                 throw new Error(
-                    data.detail || "Image analysis failed."
+                    data.detail ||
+                        data.message ||
+                        "Image analysis failed."
                 );
             }
 
             setResult(data);
-
         } catch (err) {
+            console.error("Image Analyzer Error:", err);
+
             setError(
                 err.message ||
-                "Unable to analyze the image."
+                    "Failed to connect to the CyberGuard backend."
             );
         } finally {
             setLoading(false);
         }
     };
 
-
-    /* =========================================
-       RESET
-    ========================================= */
+    // =========================================================
+    // RESET
+    // =========================================================
 
     const handleReset = () => {
         setSelectedFile(null);
         setPreview(null);
         setResult(null);
         setError("");
+
+        const fileInput =
+            document.getElementById("image-upload");
+
+        if (fileInput) {
+            fileInput.value = "";
+        }
     };
 
+    // =========================================================
+    // RESULT VALUE HELPER
+    // =========================================================
 
-    /* =========================================
-       FORMAT FILE SIZE
-    ========================================= */
-
-    const formatFileSize = (bytes) => {
-        if (!bytes) return "0 KB";
-
-        const kb = bytes / 1024;
-
-        if (kb < 1024) {
-            return `${kb.toFixed(1)} KB`;
+    const getResultValue = (keys, fallback = "N/A") => {
+        if (!result) {
+            return fallback;
         }
 
-        return `${(kb / 1024).toFixed(2)} MB`;
+        for (const key of keys) {
+            if (
+                result[key] !== undefined &&
+                result[key] !== null
+            ) {
+                return result[key];
+            }
+        }
+
+        return fallback;
     };
 
+    const detection = getResultValue(
+        ["result", "prediction", "classification", "label"],
+        "N/A"
+    );
 
-    /* =========================================
-       RESULT STATUS
-    ========================================= */
+    const confidence = getResultValue(
+        ["confidence", "confidence_score"],
+        "N/A"
+    );
 
-    const getStatusClass = () => {
-        if (!result) return "";
+    const message = getResultValue(
+        ["message", "analysis", "description"],
+        ""
+    );
 
-        const status =
-            result.status ||
-            result.result ||
-            result.prediction ||
-            "";
-
-        const value = String(status).toLowerCase();
-
-        if (
-            value.includes("fake") ||
-            value.includes("deepfake") ||
-            value.includes("malicious")
-        ) {
-            return "result-fake";
-        }
-
-        if (
-            value.includes("warning") ||
-            value.includes("suspicious")
-        ) {
-            return "result-warning";
-        }
-
-        return "result-real";
-    };
-
+    // =========================================================
+    // UI
+    // =========================================================
 
     return (
-        <div className="media-analyzer-page">
+        <div className="image-analyzer-page">
 
-            <div className="media-container">
+            {/* =================================================
+                HEADER
+            ================================================= */}
 
-                {/* =========================================
-                    HEADER
-                ========================================= */}
-
-                <div className="media-header">
-
-                    <div className="media-badge">
-                        IMAGE ANALYZER
-                    </div>
-
-                    <h1>
-                        Image Analyzer
-                    </h1>
-
-                    <p>
-                        Upload an image to detect suspicious,
-                        manipulated or potentially AI-generated content.
-                    </p>
-
+            <div className="image-analyzer-header">
+                <div className="image-analyzer-badge">
+                    AI MEDIA SECURITY
                 </div>
 
+                <h1>IMAGE AUTHENTICITY ANALYZER</h1>
 
-                {/* =========================================
-                    UPLOAD CARD
-                ========================================= */}
+                <p>
+                    Upload an image and let CYBERGUARD analyze
+                    it for signs of manipulation, synthetic
+                    generation, or suspicious content.
+                </p>
+            </div>
 
-                <div className="media-card">
+            {/* =================================================
+                MAIN CARD
+            ================================================= */}
 
-                    <div className="upload-area">
+            <div className="image-analyzer-card">
 
-                        <div className="upload-icon">
-                            🖼️
-                        </div>
+                {/* =================================================
+                    UPLOAD AREA
+                ================================================= */}
 
-                        <h2>
-                            Upload Image
-                        </h2>
+                <div className="image-upload-section">
 
-                        <p>
-                            Select an image file for intelligent
-                            cybersecurity analysis.
-                        </p>
+                    <label
+                        htmlFor="image-upload"
+                        className="image-upload-box"
+                    >
+                        {preview ? (
+                            <img
+                                src={preview}
+                                alt="Selected preview"
+                                className="image-preview"
+                            />
+                        ) : (
+                            <>
+                                <div className="upload-icon">
+                                    +
+                                </div>
 
+                                <h3>
+                                    Upload Image
+                                </h3>
 
-                        <label
-                            htmlFor="image-upload"
-                            className="browse-btn"
-                        >
-                            Choose Image
-                        </label>
+                                <p>
+                                    Click to select an image
+                                </p>
+
+                                <span>
+                                    PNG, JPG, JPEG, WEBP
+                                </span>
+                            </>
+                        )}
 
                         <input
                             id="image-upload"
@@ -208,316 +224,181 @@ const ImageAnalyzer = () => {
                             onChange={handleFileChange}
                             hidden
                         />
+                    </label>
+                </div>
+
+                {/* =================================================
+                    FILE INFORMATION
+                ================================================= */}
+
+                {selectedFile && (
+                    <div className="image-file-information">
+
+                        <div className="image-info-box">
+                            <span>FILE NAME</span>
+
+                            <strong>
+                                {selectedFile.name}
+                            </strong>
+                        </div>
+
+                        <div className="image-info-box">
+                            <span>FILE TYPE</span>
+
+                            <strong>
+                                {selectedFile.type ||
+                                    "Unknown"}
+                            </strong>
+                        </div>
+
+                        <div className="image-info-box">
+                            <span>FILE SIZE</span>
+
+                            <strong>
+                                {(
+                                    selectedFile.size /
+                                    1024
+                                ).toFixed(1)}{" "}
+                                KB
+                            </strong>
+                        </div>
 
                     </div>
+                )}
 
+                {/* =================================================
+                    ACTION BUTTONS
+                ================================================= */}
 
-                    {/* =========================================
-                        IMAGE PREVIEW
-                    ========================================= */}
+                <div className="image-action-buttons">
 
-                    {preview && (
-                        <div className="image-preview">
+                    <button
+                        className="analyze-image-button"
+                        onClick={handleAnalyze}
+                        disabled={
+                            !selectedFile || loading
+                        }
+                    >
+                        {loading
+                            ? "Analyzing..."
+                            : "Analyze Image"}
+                    </button>
 
-                            <h3>
-                                Image Preview
-                            </h3>
+                    <button
+                        className="reset-image-button"
+                        onClick={handleReset}
+                    >
+                        Reset
+                    </button>
 
-                            <img
-                                src={preview}
-                                alt="Selected preview"
-                            />
+                </div>
 
+                {/* =================================================
+                    ERROR
+                ================================================= */}
+
+                {error && (
+                    <div className="image-error-message">
+                        ⚠️ {error}
+                    </div>
+                )}
+
+                {/* =================================================
+                    RESULT
+                ================================================= */}
+
+                {result && (
+                    <div className="image-result-card">
+
+                        <div className="result-header">
+                            <span>
+                                AI ANALYSIS RESULT
+                            </span>
                         </div>
-                    )}
 
+                        <div className="result-content">
 
-                    {/* =========================================
-                        FILE INFORMATION
-                    ========================================= */}
-
-                    {selectedFile && (
-                        <div className="file-info">
-
-                            <div>
+                            <div className="result-item">
                                 <span>
-                                    File Name
+                                    CLASSIFICATION
                                 </span>
 
                                 <strong>
-                                    {selectedFile.name}
-                                </strong>
-                            </div>
-
-
-                            <div>
-                                <span>
-                                    File Type
-                                </span>
-
-                                <strong>
-                                    {selectedFile.type}
-                                </strong>
-                            </div>
-
-
-                            <div>
-                                <span>
-                                    File Size
-                                </span>
-
-                                <strong>
-                                    {formatFileSize(
-                                        selectedFile.size
+                                    {String(
+                                        detection
                                     )}
                                 </strong>
                             </div>
 
-                        </div>
-                    )}
+                            <div className="result-item">
+                                <span>
+                                    CONFIDENCE
+                                </span>
 
-
-                    {/* =========================================
-                        ACTION BUTTONS
-                    ========================================= */}
-
-                    {selectedFile && (
-                        <div className="media-actions">
-
-                            <button
-                                className="analyze-media-btn"
-                                onClick={handleAnalyze}
-                                disabled={loading}
-                            >
-                                {loading
-                                    ? "Analyzing..."
-                                    : "Analyze Image"}
-                            </button>
-
-
-                            <button
-                                className="reset-media-btn"
-                                onClick={handleReset}
-                                disabled={loading}
-                            >
-                                Reset
-                            </button>
-
-                        </div>
-                    )}
-
-
-                    {/* =========================================
-                        LOADING
-                    ========================================= */}
-
-                    {loading && (
-                        <div className="media-loading">
-
-                            <div className="loading-spinner"></div>
-
-                            <p>
-                                AI is analyzing the image...
-                            </p>
-
-                        </div>
-                    )}
-
-
-                    {/* =========================================
-                        ERROR
-                    ========================================= */}
-
-                    {error && (
-                        <div className="media-error">
-                            ⚠️ {error}
-                        </div>
-                    )}
-
-
-                    {/* =========================================
-                        RESULT
-                    ========================================= */}
-
-                    {result && !loading && (
-                        <div className="media-result">
-
-                            <div className="result-header">
-
-                                <div>
-                                    <span className="result-label">
-                                        ANALYSIS COMPLETE
-                                    </span>
-
-                                    <h2>
-                                        Image Analysis Result
-                                    </h2>
-                                </div>
-
-                                <div
-                                    className={`result-status ${getStatusClass()}`}
-                                >
-                                    {result.status ||
-                                        result.result ||
-                                        result.prediction ||
-                                        "Analyzed"}
-                                </div>
-
+                                <strong>
+                                    {typeof confidence ===
+                                    "number"
+                                        ? `${confidence}%`
+                                        : String(
+                                              confidence
+                                          )}
+                                </strong>
                             </div>
 
-
-                            {/* =================================
-                                RESULT GRID
-                            ================================= */}
-
-                            <div className="result-grid">
-
-                                <div className="result-item">
-
+                            {message && (
+                                <div className="result-description">
                                     <span>
-                                        Detection
+                                        ANALYSIS
                                     </span>
-
-                                    <strong>
-                                        {result.detection ||
-                                            result.status ||
-                                            result.result ||
-                                            "Analyzed"}
-                                    </strong>
-
-                                </div>
-
-
-                                <div className="result-item">
-
-                                    <span>
-                                        Confidence
-                                    </span>
-
-                                    <strong>
-                                        {result.confidence !== undefined
-                                            ? `${result.confidence}%`
-                                            : "N/A"}
-                                    </strong>
-
-                                </div>
-
-
-                                <div className="result-item">
-
-                                    <span>
-                                        Risk Level
-                                    </span>
-
-                                    <strong>
-                                        {result.risk ||
-                                            result.risk_level ||
-                                            "N/A"}
-                                    </strong>
-
-                                </div>
-
-                            </div>
-
-
-                            {/* =================================
-                                CONFIDENCE
-                            ================================= */}
-
-                            {result.confidence !== undefined && (
-                                <div className="confidence-section">
-
-                                    <div className="confidence-header">
-
-                                        <span>
-                                            Confidence Score
-                                        </span>
-
-                                        <strong>
-                                            {result.confidence}%
-                                        </strong>
-
-                                    </div>
-
-                                    <div className="confidence-bar">
-
-                                        <div
-                                            className="confidence-fill"
-                                            style={{
-                                                width: `${Math.min(
-                                                    100,
-                                                    Math.max(
-                                                        0,
-                                                        Number(
-                                                            result.confidence
-                                                        )
-                                                    )
-                                                )}%`,
-                                            }}
-                                        ></div>
-
-                                    </div>
-
-                                </div>
-                            )}
-
-
-                            {/* =================================
-                                EVIDENCE
-                            ================================= */}
-
-                            {result.evidence && (
-                                <div className="media-evidence">
-
-                                    <h3>
-                                        Evidence
-                                    </h3>
-
-                                    {Array.isArray(result.evidence) ? (
-                                        <ul>
-                                            {result.evidence.map(
-                                                (item, index) => (
-                                                    <li key={index}>
-                                                        ✓ {item}
-                                                    </li>
-                                                )
-                                            )}
-                                        </ul>
-                                    ) : (
-                                        <p>
-                                            {result.evidence}
-                                        </p>
-                                    )}
-
-                                </div>
-                            )}
-
-
-                            {/* =================================
-                                RECOMMENDATION
-                            ================================= */}
-
-                            {(
-                                result.recommended_action ||
-                                result.recommendation
-                            ) && (
-                                <div className="media-recommendation">
-
-                                    <h3>
-                                        Recommended Action
-                                    </h3>
 
                                     <p>
-                                        {result.recommended_action ||
-                                            result.recommendation}
+                                        {String(
+                                            message
+                                        )}
                                     </p>
-
                                 </div>
                             )}
 
                         </div>
-                    )}
 
+                        <details className="raw-result">
+                            <summary>
+                                View API Response
+                            </summary>
+
+                            <pre>
+                                {JSON.stringify(
+                                    result,
+                                    null,
+                                    2
+                                )}
+                            </pre>
+                        </details>
+
+                    </div>
+                )}
+
+            </div>
+
+            {/* =================================================
+                SECURITY INFORMATION
+            ================================================= */}
+
+            <div className="image-security-info">
+
+                <div>
+                    <span>✓</span>
+                    AI-Based Detection
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Secure API Processing
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Cyber Threat Analysis
                 </div>
 
             </div>
