@@ -15,7 +15,7 @@ import {
 
 import { getDashboardStats } from "../services/api";
 
-import "../styles/Dashboard.css";
+import "../styles/dashboard.css";
 
 
 function Dashboard() {
