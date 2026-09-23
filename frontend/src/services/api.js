@@ -1,8 +1,8 @@
 // ============================================================
-// CYBERGUARD API CONFIGURATION
+// CYBERGUARD - PRODUCTION API CONFIGURATION
 // ============================================================
 
-const API_URL = "https://cyberguard-backend-ou6h.onrender.com/api";
+const API_URL = "https://cyberguard-backend-dewc.onrender.com/api";
 
 
 // ============================================================
@@ -206,7 +206,7 @@ export const getDashboardStats = async () => {
 
 // ============================================================
 // LOGIN
-// EMAIL + PASSWORD ONLY
+// EMAIL + PASSWORD
 // ============================================================
 
 export const loginUser = async (email, password) => {
@@ -306,7 +306,6 @@ export const sendForgotPasswordOTP = async (mobile) => {
 
 // ============================================================
 // RESET PASSWORD
-// VERIFY OTP + CHANGE PASSWORD
 // ============================================================
 
 export const resetPassword = async (
