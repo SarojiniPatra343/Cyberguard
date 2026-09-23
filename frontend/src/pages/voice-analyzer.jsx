@@ -60,7 +60,7 @@ const VoiceAnalyzer = () => {
             formData.append("file", audioFile);
 
             const response = await fetch(
-                "http://127.0.0.1:8000/api/voice/analyze",
+                 "https://cyberguard-backend-dewc.onrender.com/api/voice/analyze",
                 {
                     method: "POST",
                     body: formData
