@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import "../styles/voice-analyzer.css";
 
+// ============================================================
+// CYBERGUARD PRODUCTION API
+// ============================================================
+
+const API_URL =
+    "https://cyberguard-backend-dewc.onrender.com/api";
+
+
+// ============================================================
+// VOICE ANALYZER
+// ============================================================
+
 const VoiceAnalyzer = () => {
     const [audioFile, setAudioFile] = useState(null);
     const [audioPreview, setAudioPreview] = useState("");
@@ -8,18 +20,23 @@ const VoiceAnalyzer = () => {
     const [result, setResult] = useState(null);
     const [error, setError] = useState("");
 
-    // Handle audio selection
+
+    // ========================================================
+    // HANDLE AUDIO SELECTION
+    // ========================================================
+
     const handleFileChange = (event) => {
-        const file = event.target.files[0];
+        const file = event.target.files?.[0];
 
         setError("");
         setResult(null);
 
         if (!file) {
+            setAudioFile(null);
+            setAudioPreview("");
             return;
         }
 
-        // Allowed audio formats
         const allowedTypes = [
             "audio/mpeg",
             "audio/wav",
@@ -28,13 +45,16 @@ const VoiceAnalyzer = () => {
             "audio/ogg",
             "audio/webm",
             "audio/mp4",
-            "audio/x-m4a"
+            "audio/x-m4a",
         ];
 
         if (!allowedTypes.includes(file.type)) {
             setError(
                 "Invalid audio format. Please upload MP3, WAV, OGG, WEBM or M4A."
             );
+
+            setAudioFile(null);
+            setAudioPreview("");
             return;
         }
 
@@ -44,7 +64,11 @@ const VoiceAnalyzer = () => {
         setAudioPreview(previewURL);
     };
 
-    // Analyze voice
+
+    // ========================================================
+    // ANALYZE VOICE
+    // ========================================================
+
     const handleAnalyze = async () => {
         if (!audioFile) {
             setError("Please select an audio file first.");
@@ -57,54 +81,82 @@ const VoiceAnalyzer = () => {
 
         try {
             const formData = new FormData();
+
             formData.append("file", audioFile);
 
+            // Production backend
             const response = await fetch(
-                 "https://cyberguard-backend-dewc.onrender.com/api/voice/analyze",
+                `${API_URL}/voice/analyze`,
                 {
                     method: "POST",
-                    body: formData
+                    body: formData,
                 }
             );
 
+            let data = {};
+
+            try {
+                data = await response.json();
+            } catch {
+                data = {};
+            }
+
             if (!response.ok) {
                 throw new Error(
-                    `Server returned ${response.status} ${response.statusText}`
+                    data.detail ||
+                        data.message ||
+                        `Server returned ${response.status} ${response.statusText}`
                 );
             }
 
-            const data = await response.json();
-
             setResult(data);
+
         } catch (err) {
-            console.error("Voice analysis error:", err);
+            console.error(
+                "Voice analysis error:",
+                err
+            );
 
             setError(
                 err.message ||
-                    "Unable to analyze the audio. Please make sure the backend server is running."
+                    "Unable to analyze the audio. Please try again."
             );
+
         } finally {
             setLoading(false);
         }
     };
 
-    // Reset analyzer
+
+    // ========================================================
+    // RESET ANALYZER
+    // ========================================================
+
     const handleReset = () => {
         setAudioFile(null);
         setAudioPreview("");
         setResult(null);
         setError("");
 
-        const fileInput = document.getElementById("voice-file-input");
+        const fileInput =
+            document.getElementById(
+                "voice-file-input"
+            );
 
         if (fileInput) {
             fileInput.value = "";
         }
     };
 
-    // File size formatter
+
+    // ========================================================
+    // FORMAT FILE SIZE
+    // ========================================================
+
     const formatFileSize = (bytes) => {
-        if (!bytes) return "0 KB";
+        if (!bytes) {
+            return "0 KB";
+        }
 
         const kb = bytes / 1024;
 
@@ -115,11 +167,17 @@ const VoiceAnalyzer = () => {
         return `${(kb / 1024).toFixed(2)} MB`;
     };
 
-    // Result status class
-    const getStatusClass = (status) => {
-        if (!status) return "";
 
-        const value = status.toLowerCase();
+    // ========================================================
+    // RESULT STATUS CLASS
+    // ========================================================
+
+    const getStatusClass = (status) => {
+        if (!status) {
+            return "";
+        }
+
+        const value = String(status).toLowerCase();
 
         if (
             value.includes("fake") ||
@@ -139,11 +197,30 @@ const VoiceAnalyzer = () => {
         return "result-real";
     };
 
+
+    // ========================================================
+    // CONFIDENCE
+    // ========================================================
+
+    const confidence = Math.min(
+        Number(result?.confidence || 0),
+        100
+    );
+
+
+    // ========================================================
+    // PAGE
+    // ========================================================
+
     return (
         <div className="voice-analyzer-page">
+
             <div className="voice-container">
 
-                {/* HEADER */}
+                {/* =================================================
+                    HEADER
+                ================================================= */}
+
                 <div className="voice-header">
 
                     <div className="voice-icon">
@@ -151,27 +228,40 @@ const VoiceAnalyzer = () => {
                     </div>
 
                     <div>
+
                         <div className="voice-badge">
                             CYBERGUARD VOICE SECURITY
                         </div>
 
-                        <h1>Voice Analyzer</h1>
+                        <h1>
+                            Voice Analyzer
+                        </h1>
 
                         <p>
-                            Detect AI-generated, manipulated and suspicious
-                            voice recordings using intelligent analysis.
+                            Detect AI-generated,
+                            manipulated and suspicious
+                            voice recordings using
+                            intelligent analysis.
                         </p>
+
                     </div>
 
                 </div>
 
-                {/* UPLOAD CARD */}
+
+                {/* =================================================
+                    UPLOAD CARD
+                ================================================= */}
+
                 <div className="voice-card">
 
                     <div className="voice-card-title">
                         <span>🎧</span>
                         Upload Voice Recording
                     </div>
+
+
+                    {/* UPLOAD AREA */}
 
                     <div className="voice-upload-area">
 
@@ -184,7 +274,8 @@ const VoiceAnalyzer = () => {
                         </h3>
 
                         <p>
-                            Supported formats: MP3, WAV, OGG, WEBM, M4A
+                            Supported formats:
+                            MP3, WAV, OGG, WEBM, M4A
                         </p>
 
                         <label
@@ -204,7 +295,11 @@ const VoiceAnalyzer = () => {
 
                     </div>
 
-                    {/* AUDIO PREVIEW */}
+
+                    {/* =================================================
+                        AUDIO PREVIEW
+                    ================================================= */}
+
                     {audioFile && (
                         <div className="voice-preview-section">
 
@@ -218,26 +313,35 @@ const VoiceAnalyzer = () => {
                                     controls
                                     src={audioPreview}
                                 >
-                                    Your browser does not support audio
-                                    playback.
+                                    Your browser does not support
+                                    audio playback.
                                 </audio>
                             )}
 
                             <div className="voice-file-info">
 
                                 <div>
-                                    <strong>File:</strong>{" "}
+                                    <strong>
+                                        File:
+                                    </strong>{" "}
                                     {audioFile.name}
                                 </div>
 
                                 <div>
-                                    <strong>Type:</strong>{" "}
-                                    {audioFile.type || "Audio"}
+                                    <strong>
+                                        Type:
+                                    </strong>{" "}
+                                    {audioFile.type ||
+                                        "Audio"}
                                 </div>
 
                                 <div>
-                                    <strong>Size:</strong>{" "}
-                                    {formatFileSize(audioFile.size)}
+                                    <strong>
+                                        Size:
+                                    </strong>{" "}
+                                    {formatFileSize(
+                                        audioFile.size
+                                    )}
                                 </div>
 
                             </div>
@@ -245,11 +349,17 @@ const VoiceAnalyzer = () => {
                         </div>
                     )}
 
-                    {/* ANALYZE BUTTON */}
+
+                    {/* =================================================
+                        ANALYZE BUTTON
+                    ================================================= */}
+
                     <button
                         className="voice-analyze-btn"
                         onClick={handleAnalyze}
-                        disabled={!audioFile || loading}
+                        disabled={
+                            !audioFile || loading
+                        }
                     >
                         {loading ? (
                             <>
@@ -263,7 +373,11 @@ const VoiceAnalyzer = () => {
                         )}
                     </button>
 
-                    {/* ERROR */}
+
+                    {/* =================================================
+                        ERROR
+                    ================================================= */}
+
                     {error && (
                         <div className="voice-error">
                             <span>⚠</span>
@@ -273,7 +387,11 @@ const VoiceAnalyzer = () => {
 
                 </div>
 
-                {/* RESULT */}
+
+                {/* =================================================
+                    RESULT
+                ================================================= */}
+
                 {result && (
                     <div className="voice-result-section">
 
@@ -282,35 +400,51 @@ const VoiceAnalyzer = () => {
                             Voice Analysis Result
                         </div>
 
+
                         {/* STATUS */}
+
                         <div
                             className={`voice-status ${getStatusClass(
                                 result.status
                             )}`}
                         >
+
                             <div className="voice-status-icon">
-                                {getStatusClass(result.status) ===
-                                "result-fake"
+
+                                {getStatusClass(
+                                    result.status
+                                ) === "result-fake"
                                     ? "⚠️"
-                                    : getStatusClass(result.status) ===
+                                    : getStatusClass(
+                                          result.status
+                                      ) ===
                                       "result-warning"
                                     ? "⚠️"
                                     : "✓"}
+
                             </div>
 
                             <div>
+
                                 <span className="voice-status-label">
                                     Detection Status
                                 </span>
 
                                 <strong>
-                                    {result.status || "Analysis Completed"}
+                                    {result.status ||
+                                        "Analysis Completed"}
                                 </strong>
+
                             </div>
+
                         </div>
 
+
                         {/* RESULT GRID */}
+
                         <div className="voice-result-grid">
+
+                            {/* DETECTION */}
 
                             <div className="voice-result-box">
 
@@ -326,6 +460,9 @@ const VoiceAnalyzer = () => {
 
                             </div>
 
+
+                            {/* CONFIDENCE */}
+
                             <div className="voice-result-box">
 
                                 <span className="voice-result-label">
@@ -337,20 +474,20 @@ const VoiceAnalyzer = () => {
                                 </strong>
 
                                 <div className="voice-confidence-bar">
+
                                     <div
                                         className="voice-confidence-fill"
                                         style={{
-                                            width: `${Math.min(
-                                                Number(
-                                                    result.confidence || 0
-                                                ),
-                                                100
-                                            )}%`
+                                            width: `${confidence}%`,
                                         }}
                                     ></div>
+
                                 </div>
 
                             </div>
+
+
+                            {/* RISK */}
 
                             <div className="voice-result-box">
 
@@ -359,14 +496,19 @@ const VoiceAnalyzer = () => {
                                 </span>
 
                                 <strong>
-                                    {result.risk || "Low"}
+                                    {result.risk ||
+                                        "Low"}
                                 </strong>
 
                             </div>
 
                         </div>
 
-                        {/* EVIDENCE */}
+
+                        {/* =================================================
+                            EVIDENCE
+                        ================================================= */}
+
                         {result.evidence &&
                             result.evidence.length > 0 && (
                                 <div className="voice-evidence">
@@ -376,20 +518,36 @@ const VoiceAnalyzer = () => {
                                     </h3>
 
                                     <ul>
+
                                         {result.evidence.map(
-                                            (item, index) => (
-                                                <li key={index}>
-                                                    <span>✓</span>
+                                            (
+                                                item,
+                                                index
+                                            ) => (
+                                                <li
+                                                    key={
+                                                        index
+                                                    }
+                                                >
+                                                    <span>
+                                                        ✓
+                                                    </span>
+
                                                     {item}
                                                 </li>
                                             )
                                         )}
+
                                     </ul>
 
                                 </div>
                             )}
 
-                        {/* RECOMMENDATION */}
+
+                        {/* =================================================
+                            RECOMMENDATION
+                        ================================================= */}
+
                         {result.recommended_action && (
                             <div className="voice-recommendation">
 
@@ -398,13 +556,19 @@ const VoiceAnalyzer = () => {
                                 </h3>
 
                                 <p>
-                                    {result.recommended_action}
+                                    {
+                                        result.recommended_action
+                                    }
                                 </p>
 
                             </div>
                         )}
 
-                        {/* RESET */}
+
+                        {/* =================================================
+                            RESET
+                        ================================================= */}
+
                         <button
                             className="voice-reset-btn"
                             onClick={handleReset}
@@ -416,6 +580,7 @@ const VoiceAnalyzer = () => {
                 )}
 
             </div>
+
         </div>
     );
 };
