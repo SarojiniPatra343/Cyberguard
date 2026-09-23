@@ -1,4 +1,8 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+// ============================================================
+// CYBERGUARD API CONFIGURATION
+// ============================================================
+
+const API_URL = "https://cyberguard-backend-ou6h.onrender.com/api";
 
 
 // ============================================================
@@ -7,7 +11,7 @@ const API_BASE_URL = "http://127.0.0.1:8000/api";
 
 export const analyzeThreat = async (input, type = "URL") => {
     const response = await fetch(
-        `${API_BASE_URL}/threats/analyze`,
+        `${API_URL}/threats/analyze`,
         {
             method: "POST",
             headers: {
@@ -38,7 +42,7 @@ export const analyzeThreat = async (input, type = "URL") => {
 
 export const detectPhishing = async (url) => {
     const response = await fetch(
-        `${API_BASE_URL}/phishing/detect`,
+        `${API_URL}/phishing/detect`,
         {
             method: "POST",
             headers: {
@@ -72,7 +76,7 @@ export const executeResponse = async (
     target = "Unknown"
 ) => {
     const response = await fetch(
-        `${API_BASE_URL}/response/execute`,
+        `${API_URL}/response/execute`,
         {
             method: "POST",
             headers: {
@@ -104,7 +108,7 @@ export const executeResponse = async (
 
 export const getThreatHistory = async () => {
     const response = await fetch(
-        `${API_BASE_URL}/threats/history`
+        `${API_URL}/threats/history`
     );
 
     const data = await response.json();
@@ -125,7 +129,7 @@ export const getThreatHistory = async () => {
 
 export const analyzeEmail = async (email) => {
     const response = await fetch(
-        `${API_BASE_URL}/email/analyze`,
+        `${API_URL}/email/analyze`,
         {
             method: "POST",
             headers: {
@@ -155,7 +159,7 @@ export const analyzeEmail = async (email) => {
 
 export const analyzeMessage = async (message) => {
     const response = await fetch(
-        `${API_BASE_URL}/message/analyze`,
+        `${API_URL}/message/analyze`,
         {
             method: "POST",
             headers: {
@@ -185,7 +189,7 @@ export const analyzeMessage = async (message) => {
 
 export const getDashboardStats = async () => {
     const response = await fetch(
-        `${API_BASE_URL}/dashboard/stats`
+        `${API_URL}/dashboard/stats`
     );
 
     const data = await response.json();
@@ -207,7 +211,7 @@ export const getDashboardStats = async () => {
 
 export const loginUser = async (email, password) => {
     const response = await fetch(
-        `${API_BASE_URL}/auth/login`,
+        `${API_URL}/auth/login`,
         {
             method: "POST",
             headers: {
@@ -243,7 +247,7 @@ export const registerUser = async (
     password
 ) => {
     const response = await fetch(
-        `${API_BASE_URL}/auth/register`,
+        `${API_URL}/auth/register`,
         {
             method: "POST",
             headers: {
@@ -272,12 +276,11 @@ export const registerUser = async (
 
 // ============================================================
 // FORGOT PASSWORD
-// SEND OTP THROUGH MSG91
 // ============================================================
 
 export const sendForgotPasswordOTP = async (mobile) => {
     const response = await fetch(
-        `${API_BASE_URL}/auth/forgot-password`,
+        `${API_URL}/auth/forgot-password`,
         {
             method: "POST",
             headers: {
@@ -312,7 +315,7 @@ export const resetPassword = async (
     newPassword
 ) => {
     const response = await fetch(
-        `${API_BASE_URL}/auth/reset-password`,
+        `${API_URL}/auth/reset-password`,
         {
             method: "POST",
             headers: {
