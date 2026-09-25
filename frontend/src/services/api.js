@@ -317,248 +317,30 @@ export const loginUser = async (
 // DJANGO
 // ============================================================
 
-export const registerUser = async (
-    name,
-    email,
-    mobile,
-    password
-) => {
-
-    try {
-
-        /*
-         * Your Django model requires:
-         *
-         * name
-         * email
-         * country_code
-         * mobile
-         * password
-         */
-
-        let countryCode = "";
-        let mobileNumber = mobile.trim();
-
-        /*
-         * If mobile is:
-         *
-         * +919348666058
-         *
-         * separate:
-         *
-         * +91
-         * 9348666058
-         */
-
-        if (mobileNumber.startsWith("+91")) {
-
-            countryCode = "+91";
-
-            mobileNumber =
-                mobileNumber.substring(3);
-
-        } else if (
-            mobileNumber.startsWith("+")
-        ) {
-
-            /*
-             * Generic country-code handling
-             *
-             * Example:
-             * +447123456789
-             */
-
-            const match =
-                mobileNumber.match(
-                    /^(\+\d{1,3})(\d+)$/
-                );
-
-            if (match) {
-
-                countryCode =
-                    match[1];
-
-                mobileNumber =
-                    match[2];
-
-            }
-
-        }
-
-        /*
-         * If no country code was entered,
-         * use +91 for India.
-         */
-
-        if (!countryCode) {
-            countryCode = "+91";
-        }
-
-        const response = await fetch(
-            `${DJANGO_API_URL}/register/`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json",
-                },
-
-                body: JSON.stringify({
-
-                    name: name.trim(),
-
-                    email: email
-                        .trim()
-                        .toLowerCase(),
-
-                    country_code:
-                        countryCode,
-
-                    mobile:
-                        mobileNumber,
-
-                    password,
-                }),
-            }
-        );
-
-        let data;
-
-        try {
-            data = await response.json();
-        } catch {
-            throw new Error(
-                "Invalid response from Django server."
-            );
-        }
-
-        if (!response.ok) {
-
-            /*
-             * Django validation errors
-             */
-
-            if (data.errors) {
-
-                const errors =
-                    Object.values(
-                        data.errors
-                    ).flat();
-
-                throw new Error(
-                    errors.join(" ")
-                );
-            }
-
-            throw new Error(
-                data.message ||
-                data.detail ||
-                "Registration failed."
-            );
-        }
-
-        return data;
-
-    } catch (error) {
-
-        console.error(
-            "Registration API Error:",
-            error
-        );
-
-        throw error;
-    }
-};
 
 
-// ============================================================
-// FORGOT PASSWORD
-// ============================================================
-//
-// NOTE:
-// Your current Django backend does NOT yet have
-// forgot-password functionality.
-//
-// These functions are kept temporarily for your
-// existing frontend so the other code does not break.
-//
-// We will connect them to Django after basic
-// registration + login are working.
-// ============================================================
-
-export const sendForgotPasswordOTP = async (
-    mobile
-) => {
-
+export const registerUser = async (userData) => {
     const response = await fetch(
-        `${API_URL}/auth/forgot-password`,
+        `${DJANGO_API_URL}/register/`,
         {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json",
             },
-
-            body: JSON.stringify({
-                mobile: mobile.trim(),
-            }),
+            body: JSON.stringify(userData),
         }
     );
 
     const data = await response.json();
 
     if (!response.ok) {
+        const message =
+            data?.message ||
+            data?.errors?.email?.[0] ||
+            data?.errors?.mobile?.[0] ||
+            "Registration failed.";
 
-        throw new Error(
-            data.detail ||
-            "Unable to send OTP"
-        );
-    }
-
-    return data;
-};
-
-
-// ============================================================
-// RESET PASSWORD
-// ============================================================
-//
-// NOTE:
-// This still uses FastAPI temporarily.
-// We can move it to Django later.
-// ============================================================
-
-export const resetPassword = async (
-    mobile,
-    otp,
-    newPassword
-) => {
-
-    const response = await fetch(
-        `${API_URL}/auth/reset-password`,
-        {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json",
-            },
-
-            body: JSON.stringify({
-                mobile: mobile.trim(),
-                otp: otp.trim(),
-                new_password: newPassword,
-            }),
-        }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-
-        throw new Error(
-            data.detail ||
-            "Password reset failed"
-        );
+        throw new Error(message);
     }
 
     return data;

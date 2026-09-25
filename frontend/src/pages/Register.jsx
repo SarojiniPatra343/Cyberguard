@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Register.css";
+import { registerUser } from "../services/api";
 
 function Register() {
     const navigate = useNavigate();
@@ -121,53 +122,72 @@ function Register() {
         { name: "Trinidad and Tobago", code: "+1-868", flag: "🇹🇹" }
     ];
 
-    const handleRegister = (e) => {
-        e.preventDefault();
+   const handleRegister = async (e) => {
+    e.preventDefault();
 
-        setError("");
-        setMessage("");
+    setError("");
+    setMessage("");
 
-        if (
-            !name ||
-            !email ||
-            !mobile ||
-            !password ||
-            !confirmPassword
-        ) {
-            setError("Please fill in all fields.");
-            return;
-        }
+    if (
+        !name ||
+        !email ||
+        !mobile ||
+        !password ||
+        !confirmPassword
+    ) {
+        setError("Please fill in all fields.");
+        return;
+    }
 
-        if (mobile.length < 6) {
-            setError("Please enter a valid mobile number.");
-            return;
-        }
+    if (mobile.length < 6) {
+        setError("Please enter a valid mobile number.");
+        return;
+    }
 
-        if (password.length < 6) {
-            setError("Password must contain at least 6 characters.");
-            return;
-        }
+    if (password.length < 6) {
+        setError("Password must contain at least 6 characters.");
+        return;
+    }
 
-        if (password !== confirmPassword) {
-            setError("Passwords do not match.");
-            return;
-        }
+    if (password !== confirmPassword) {
+        setError("Passwords do not match.");
+        return;
+    }
 
-        const fullMobileNumber = `${countryCode}${mobile}`;
+    const fullMobileNumber = `${countryCode}${mobile}`;
 
-        console.log("Registration Data:", {
-            name,
-            email,
-            mobile: fullMobileNumber,
-            password
-        });
+    const registrationData = {
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        country_code: countryCode,
+        mobile: fullMobileNumber,
+        password: password,
+    };
 
-        setMessage("Registration successful!");
+    console.log("Registration Data:", registrationData);
+
+    try {
+        const response = await registerUser(registrationData);
+
+        console.log("Registration API Response:", response);
+
+        setMessage(
+            response?.message || "Registration successful!"
+        );
 
         setTimeout(() => {
             navigate("/login");
         }, 1000);
-    };
+
+    } catch (error) {
+        console.error("Registration API Error:", error);
+
+        setError(
+            error?.message ||
+            "Registration failed. Please try again."
+        );
+    }
+};
 
     return (
         <div className="register-page">
