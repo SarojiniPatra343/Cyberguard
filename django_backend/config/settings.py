@@ -152,6 +152,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5174",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
+    "https://cyberguard-frontend-3o3d.onrender.com",
 ]
 
 REST_FRAMEWORK = {
