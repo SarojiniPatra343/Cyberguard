@@ -302,3 +302,47 @@ body {
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+/* =========================================
+   TOP RIGHT LOGIN BUTTON
+========================================= */
+
+.top-login {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    z-index: 1000;
+}
+
+.top-login button {
+    background: #00ff66;
+    color: #000;
+    border: 2px solid #00ff66;
+    padding: 11px 28px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 0 10px rgba(0, 255, 102, 0.5),
+        0 0 25px rgba(0, 255, 102, 0.25);
+}
+
+.top-login button:hover {
+    background: #000;
+    color: #00ff66;
+
+    box-shadow:
+        0 0 15px rgba(0, 255, 102, 0.8),
+        0 0 35px rgba(0, 255, 102, 0.4);
+
+    transform: translateY(-2px);
+}
+
+.top-login button:active {
+    transform: scale(0.96);
+}

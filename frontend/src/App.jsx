@@ -12,8 +12,8 @@ import MessageAnalyzer from "./pages/MessageAnalyzer";
 import ThreatHistory from "./pages/ThreatHistory";
 import ImageAnalyzer from "./pages/image-analyzer";
 import VoiceAnalyzer from "./pages/voice-analyzer";
-// import Login from "./pages/Login";
-// import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 
 function App() {
@@ -32,14 +32,12 @@ function App() {
           path="/"
           element={<Home />}
         />
-        {/* <Route 
+         <Route 
         path="/register"
-        element={<Register />}
-        /> */}
-        {/* <Route 
-        path="/home"
-        element={<Home />}
-        /> */}
+        element={<Register />} 
+       
+       
+        /> 
 
         <Route
           path="/analyze"
@@ -87,6 +85,7 @@ function App() {
     path="/voice-analyzer"
     element={<VoiceAnalyzer />}
 />
+<Route path="/login" element={<Login />} />
 
 
       </Routes>

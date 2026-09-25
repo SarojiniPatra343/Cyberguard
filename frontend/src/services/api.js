@@ -2,21 +2,43 @@
 // CYBERGUARD - PRODUCTION API CONFIGURATION
 // ============================================================
 
-const API_URL = "https://cyberguard-backend-dewc.onrender.com/api";
+// ============================================================
+// FASTAPI BACKEND
+// Threat detection, phishing, email, message, dashboard, etc.
+// ============================================================
+
+const API_URL =
+    "https://cyberguard-backend-dewc.onrender.com/api";
+
+
+// ============================================================
+// DJANGO AUTH BACKEND
+// Register + Login + User Database
+// ============================================================
+
+// LOCAL DEVELOPMENT
+const DJANGO_API_URL =
+    "http://127.0.0.1:8001/api";
 
 
 // ============================================================
 // THREAT ANALYSIS
 // ============================================================
 
-export const analyzeThreat = async (input, type = "URL") => {
+export const analyzeThreat = async (
+    input,
+    type = "URL"
+) => {
+
     const response = await fetch(
         `${API_URL}/threats/analyze`,
         {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
                 input,
                 type,
@@ -28,7 +50,8 @@ export const analyzeThreat = async (input, type = "URL") => {
 
     if (!response.ok) {
         throw new Error(
-            data.detail || "Threat analysis failed"
+            data.detail ||
+            "Threat analysis failed"
         );
     }
 
@@ -41,13 +64,16 @@ export const analyzeThreat = async (input, type = "URL") => {
 // ============================================================
 
 export const detectPhishing = async (url) => {
+
     const response = await fetch(
         `${API_URL}/phishing/detect`,
         {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
                 url,
             }),
@@ -58,7 +84,8 @@ export const detectPhishing = async (url) => {
 
     if (!response.ok) {
         throw new Error(
-            data.detail || "Phishing detection failed"
+            data.detail ||
+            "Phishing detection failed"
         );
     }
 
@@ -75,13 +102,16 @@ export const executeResponse = async (
     threat = "Unknown",
     target = "Unknown"
 ) => {
+
     const response = await fetch(
         `${API_URL}/response/execute`,
         {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
                 action,
                 threat,
@@ -94,7 +124,8 @@ export const executeResponse = async (
 
     if (!response.ok) {
         throw new Error(
-            data.detail || "Response action failed"
+            data.detail ||
+            "Response action failed"
         );
     }
 
@@ -107,6 +138,7 @@ export const executeResponse = async (
 // ============================================================
 
 export const getThreatHistory = async () => {
+
     const response = await fetch(
         `${API_URL}/threats/history`
     );
@@ -115,7 +147,8 @@ export const getThreatHistory = async () => {
 
     if (!response.ok) {
         throw new Error(
-            data.detail || "Unable to fetch threat history"
+            data.detail ||
+            "Unable to fetch threat history"
         );
     }
 
@@ -128,13 +161,16 @@ export const getThreatHistory = async () => {
 // ============================================================
 
 export const analyzeEmail = async (email) => {
+
     const response = await fetch(
         `${API_URL}/email/analyze`,
         {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
                 email,
             }),
@@ -145,7 +181,8 @@ export const analyzeEmail = async (email) => {
 
     if (!response.ok) {
         throw new Error(
-            data.detail || "Email analysis failed"
+            data.detail ||
+            "Email analysis failed"
         );
     }
 
@@ -158,13 +195,16 @@ export const analyzeEmail = async (email) => {
 // ============================================================
 
 export const analyzeMessage = async (message) => {
+
     const response = await fetch(
         `${API_URL}/message/analyze`,
         {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
                 message,
             }),
@@ -175,7 +215,8 @@ export const analyzeMessage = async (message) => {
 
     if (!response.ok) {
         throw new Error(
-            data.detail || "Message analysis failed"
+            data.detail ||
+            "Message analysis failed"
         );
     }
 
@@ -188,6 +229,7 @@ export const analyzeMessage = async (message) => {
 // ============================================================
 
 export const getDashboardStats = async () => {
+
     const response = await fetch(
         `${API_URL}/dashboard/stats`
     );
@@ -196,7 +238,8 @@ export const getDashboardStats = async () => {
 
     if (!response.ok) {
         throw new Error(
-            data.detail || "Unable to load dashboard statistics"
+            data.detail ||
+            "Unable to load dashboard statistics"
         );
     }
 
@@ -206,38 +249,72 @@ export const getDashboardStats = async () => {
 
 // ============================================================
 // LOGIN
+// DJANGO
 // EMAIL + PASSWORD
 // ============================================================
 
-export const loginUser = async (email, password) => {
-    const response = await fetch(
-        `${API_URL}/auth/login`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: email.trim(),
-                password,
-            }),
-        }
-    );
+export const loginUser = async (
+    email,
+    password
+) => {
 
-    const data = await response.json();
+    try {
 
-    if (!response.ok) {
-        throw new Error(
-            data.detail || "Invalid email or password"
+        const response = await fetch(
+            `${DJANGO_API_URL}/login/`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                },
+
+                body: JSON.stringify({
+                    email: email
+                        .trim()
+                        .toLowerCase(),
+
+                    password,
+                }),
+            }
         );
-    }
 
-    return data;
+        let data;
+
+        try {
+            data = await response.json();
+        } catch {
+            throw new Error(
+                "Invalid response from Django server."
+            );
+        }
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                data.detail ||
+                "Invalid email or password."
+            );
+        }
+
+        return data;
+
+    } catch (error) {
+
+        console.error(
+            "Login API Error:",
+            error
+        );
+
+        throw error;
+    }
 };
 
 
 // ============================================================
 // REGISTER
+// DJANGO
 // ============================================================
 
 export const registerUser = async (
@@ -246,46 +323,182 @@ export const registerUser = async (
     mobile,
     password
 ) => {
-    const response = await fetch(
-        `${API_URL}/auth/register`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: name.trim(),
-                email: email.trim(),
-                mobile: mobile.trim(),
-                password,
-            }),
+
+    try {
+
+        /*
+         * Your Django model requires:
+         *
+         * name
+         * email
+         * country_code
+         * mobile
+         * password
+         */
+
+        let countryCode = "";
+        let mobileNumber = mobile.trim();
+
+        /*
+         * If mobile is:
+         *
+         * +919348666058
+         *
+         * separate:
+         *
+         * +91
+         * 9348666058
+         */
+
+        if (mobileNumber.startsWith("+91")) {
+
+            countryCode = "+91";
+
+            mobileNumber =
+                mobileNumber.substring(3);
+
+        } else if (
+            mobileNumber.startsWith("+")
+        ) {
+
+            /*
+             * Generic country-code handling
+             *
+             * Example:
+             * +447123456789
+             */
+
+            const match =
+                mobileNumber.match(
+                    /^(\+\d{1,3})(\d+)$/
+                );
+
+            if (match) {
+
+                countryCode =
+                    match[1];
+
+                mobileNumber =
+                    match[2];
+
+            }
+
         }
-    );
 
-    const data = await response.json();
+        /*
+         * If no country code was entered,
+         * use +91 for India.
+         */
 
-    if (!response.ok) {
-        throw new Error(
-            data.detail || "Registration failed"
+        if (!countryCode) {
+            countryCode = "+91";
+        }
+
+        const response = await fetch(
+            `${DJANGO_API_URL}/register/`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                },
+
+                body: JSON.stringify({
+
+                    name: name.trim(),
+
+                    email: email
+                        .trim()
+                        .toLowerCase(),
+
+                    country_code:
+                        countryCode,
+
+                    mobile:
+                        mobileNumber,
+
+                    password,
+                }),
+            }
         );
-    }
 
-    return data;
+        let data;
+
+        try {
+            data = await response.json();
+        } catch {
+            throw new Error(
+                "Invalid response from Django server."
+            );
+        }
+
+        if (!response.ok) {
+
+            /*
+             * Django validation errors
+             */
+
+            if (data.errors) {
+
+                const errors =
+                    Object.values(
+                        data.errors
+                    ).flat();
+
+                throw new Error(
+                    errors.join(" ")
+                );
+            }
+
+            throw new Error(
+                data.message ||
+                data.detail ||
+                "Registration failed."
+            );
+        }
+
+        return data;
+
+    } catch (error) {
+
+        console.error(
+            "Registration API Error:",
+            error
+        );
+
+        throw error;
+    }
 };
 
 
 // ============================================================
 // FORGOT PASSWORD
 // ============================================================
+//
+// NOTE:
+// Your current Django backend does NOT yet have
+// forgot-password functionality.
+//
+// These functions are kept temporarily for your
+// existing frontend so the other code does not break.
+//
+// We will connect them to Django after basic
+// registration + login are working.
+// ============================================================
 
-export const sendForgotPasswordOTP = async (mobile) => {
+export const sendForgotPasswordOTP = async (
+    mobile
+) => {
+
     const response = await fetch(
         `${API_URL}/auth/forgot-password`,
         {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
                 mobile: mobile.trim(),
             }),
@@ -295,8 +508,10 @@ export const sendForgotPasswordOTP = async (mobile) => {
     const data = await response.json();
 
     if (!response.ok) {
+
         throw new Error(
-            data.detail || "Unable to send OTP"
+            data.detail ||
+            "Unable to send OTP"
         );
     }
 
@@ -307,19 +522,27 @@ export const sendForgotPasswordOTP = async (mobile) => {
 // ============================================================
 // RESET PASSWORD
 // ============================================================
+//
+// NOTE:
+// This still uses FastAPI temporarily.
+// We can move it to Django later.
+// ============================================================
 
 export const resetPassword = async (
     mobile,
     otp,
     newPassword
 ) => {
+
     const response = await fetch(
         `${API_URL}/auth/reset-password`,
         {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json",
             },
+
             body: JSON.stringify({
                 mobile: mobile.trim(),
                 otp: otp.trim(),
@@ -331,8 +554,10 @@ export const resetPassword = async (
     const data = await response.json();
 
     if (!response.ok) {
+
         throw new Error(
-            data.detail || "Password reset failed"
+            data.detail ||
+            "Password reset failed"
         );
     }
 

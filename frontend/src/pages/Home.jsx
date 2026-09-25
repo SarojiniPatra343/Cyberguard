@@ -19,7 +19,11 @@ function Home() {
 
     return (
         <div className="home-page">
-
+<div className="top-login">
+                <button onClick={() => navigate("/login")}>
+                    LOGIN
+                </button>
+            </div>
             {/* =====================================================
                 HERO SECTION
             ===================================================== */}

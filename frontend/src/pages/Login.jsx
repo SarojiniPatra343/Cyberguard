@@ -1,200 +1,240 @@
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { loginUser } from "../services/api";
-// import "../styles/Login.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/api";
+import "../styles/Login.css";
 
-// function Login() {
-//     const navigate = useNavigate();
+function Login() {
+    const navigate = useNavigate();
 
-//     const [email, setEmail] = useState("");
-//     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-//     const [loading, setLoading] = useState(false);
-//     const [error, setError] = useState("");
-//     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const [message, setMessage] = useState("");
 
-//     const handleLogin = async (e) => {
-//         e.preventDefault();
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
-//         setError("");
-//         setMessage("");
+        setError("");
+        setMessage("");
 
-//         if (!email.trim() || !password) {
-//             setError("Please enter your email and password.");
-//             return;
-//         }
+        if (!email.trim() || !password) {
+            setError("Please enter your email and password.");
+            return;
+        }
 
-//         try {
-//             setLoading(true);
+        try {
+            setLoading(true);
 
-//             const data = await loginUser(email, password);
+            const data = await loginUser(
+                email.trim(),
+                password
+            );
 
-//             if (data.success) {
-//                 localStorage.setItem(
-//                     "cyberguard_user",
-//                     JSON.stringify(data.user)
-//                 );
+            if (data.success) {
+                // Save logged-in user
+                localStorage.setItem(
+                    "cyberguard_user",
+                    JSON.stringify(data.user)
+                );
 
-//                 setMessage("Login successful!");
+                setMessage("Login successful!");
 
-//                 setTimeout(() => {
-//                     navigate("/");
-//                 }, 800);
-//             }
+                // Go to Home page
+                setTimeout(() => {
+                    navigate("/");
+                }, 800);
+            } else {
+                setError(
+                    data.message ||
+                    "Invalid email or password."
+                );
+            }
 
-//         } catch (error) {
-//             setError(error.message || "Invalid email or password.");
-//         } finally {
-//             setLoading(false);
-//         }
-//     };
+        } catch (error) {
+            console.error("Login Error:", error);
 
-//     return (
-//         <div className="login-page">
+            setError(
+                error.message ||
+                "Unable to connect to the login server."
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
 
-//             <div className="login-background-glow"></div>
+    return (
+        <div className="login-page">
 
-//             <div className="login-card">
+            <div className="login-background-glow"></div>
 
-//                 {/* LOGO */}
-//                 <div className="login-logo">
-//                     <div className="logo-icon">🛡️</div>
+            <div className="login-card">
 
-//                     <h1>CYBERGUARD</h1>
+                {/* LOGO */}
+                <div className="login-logo">
 
-//                     <p>AI-POWERED CYBER DEFENCE</p>
-//                 </div>
+                    <div className="logo-icon">
+                        🛡️
+                    </div>
 
+                    <h1>
+                        CYBERGUARD
+                    </h1>
 
-//                 {/* TITLE */}
-//                 <h2>Welcome Back</h2>
+                    <p>
+                        AI-POWERED CYBER DEFENCE
+                    </p>
 
-//                 <p className="login-subtitle">
-//                     Sign in to access your CyberGuard dashboard
-//                 </p>
-
-
-//                 {/* ERROR */}
-//                 {error && (
-//                     <div className="error-message">
-//                         ⚠️ {error}
-//                     </div>
-//                 )}
-
-
-//                 {/* SUCCESS */}
-//                 {message && (
-//                     <div className="success-message">
-//                         ✓ {message}
-//                     </div>
-//                 )}
-
-
-//                 {/* LOGIN FORM */}
-//                 <form
-//                     onSubmit={handleLogin}
-//                     className="login-form"
-//                 >
-
-//                     {/* EMAIL */}
-//                     <div className="input-group">
-
-//                         <label>Email Address</label>
-
-//                         <div className="input-wrapper">
-
-//                             <span className="input-icon">
-//                                 ✉
-//                             </span>
-
-//                             <input
-//                                 type="email"
-//                                 placeholder="Enter your email"
-//                                 value={email}
-//                                 onChange={(e) =>
-//                                     setEmail(e.target.value)
-//                                 }
-//                                 autoComplete="email"
-//                             />
-
-//                         </div>
-
-//                     </div>
+                </div>
 
 
-//                     {/* PASSWORD */}
-//                     <div className="input-group">
+                {/* TITLE */}
+                <h2>
+                    Welcome Back
+                </h2>
 
-//                         <label>Password</label>
-
-//                         <div className="input-wrapper">
-
-//                             <span className="input-icon">
-//                                 🔒
-//                             </span>
-
-//                             <input
-//                                 type="password"
-//                                 placeholder="Enter your password"
-//                                 value={password}
-//                                 onChange={(e) =>
-//                                     setPassword(e.target.value)
-//                                 }
-//                                 autoComplete="current-password"
-//                             />
-
-//                         </div>
-
-//                     </div>
+                <p className="login-subtitle">
+                    Sign in to access your CyberGuard dashboard
+                </p>
 
 
-                 
+                {/* ERROR MESSAGE */}
+                {error && (
+                    <div className="error-message">
+                        ⚠️ {error}
+                    </div>
+                )}
 
 
-//                     {/* LOGIN */}
-//                     <button
-//                         type="submit"
-//                         className="login-btn"
-//                         disabled={loading}
-//                     >
-//                         {loading ? "LOGGING IN..." : "LOGIN"}
-
-//                         {!loading && <span>→</span>}
-//                     </button>
-
-//                 </form>
+                {/* SUCCESS MESSAGE */}
+                {message && (
+                    <div className="success-message">
+                        ✓ {message}
+                    </div>
+                )}
 
 
-//                 {/* REGISTER */}
-//                 <div className="register-section">
+                {/* LOGIN FORM */}
+                <form
+                    onSubmit={handleLogin}
+                    className="login-form"
+                >
 
-//                     <p>
-//                         Don't have an account?
-//                     </p>
+                    {/* EMAIL */}
+                    <div className="input-group">
 
-//                     <button
-//                         type="button"
-//                         onClick={() => navigate("/register")}
-//                     >
-//                         CREATE ACCOUNT
-//                     </button>
+                        <label>
+                            Email Address
+                        </label>
 
-//                 </div>
+                        <div className="input-wrapper">
+
+                            <span className="input-icon">
+                                ✉
+                            </span>
+
+                            <input
+                                type="email"
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) =>
+                                    setEmail(e.target.value)
+                                }
+                                autoComplete="email"
+                                disabled={loading}
+                            />
+
+                        </div>
+
+                    </div>
 
 
-//                 {/* BACK HOME */}
-//                 <button
-//                     type="button"
-//                     className="back-home"
-//                     onClick={() => navigate("/")}
-//                 >
-//                     ← Back to Home
-//                 </button>
+                    {/* PASSWORD */}
+                    <div className="input-group">
 
-//             </div>
+                        <label>
+                            Password
+                        </label>
 
-//         </div>
-//     );
-// }
+                        <div className="input-wrapper">
 
-// export default Login;
+                            <span className="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) =>
+                                    setPassword(e.target.value)
+                                }
+                                autoComplete="current-password"
+                                disabled={loading}
+                            />
+
+                        </div>
+
+                    </div>
+
+
+                    {/* LOGIN BUTTON */}
+                    <button
+                        type="submit"
+                        className="login-btn"
+                        disabled={loading}
+                    >
+                        {loading
+                            ? "LOGGING IN..."
+                            : "LOGIN"
+                        }
+
+                        {!loading && (
+                            <span>
+                                →
+                            </span>
+                        )}
+
+                    </button>
+
+                </form>
+
+
+                {/* REGISTER */}
+                <div className="register-section">
+
+                    <p>
+                        Don't have an account?
+                    </p>
+
+                    <button
+                        type="button"
+                        onClick={() =>
+                            navigate("/register")
+                        }
+                    >
+                        CREATE ACCOUNT
+                    </button>
+
+                </div>
+
+
+                {/* BACK HOME */}
+                <button
+                    type="button"
+                    className="back-home"
+                    onClick={() =>
+                        navigate("/")
+                    }
+                >
+                    ← Back to Home
+                </button>
+
+            </div>
+
+        </div>
+    );
+}
+
+export default Login;
