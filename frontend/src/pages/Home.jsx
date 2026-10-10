@@ -364,6 +364,34 @@ function Home() {
     </span>
 </div>
 
+<div
+    className="feature-card video-feature-card"
+    onClick={() => navigate("/video-analyzer")}
+    role="button"
+    tabIndex={0}
+    onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            navigate("/video-analyzer");
+        }
+    }}
+>
+    <div className="feature-icon">
+        🎬
+    </div>
+
+    <h3>Video Analyzer</h3>
+
+    <p>
+        Analyze videos for potential deepfake manipulation and suspicious
+        visual inconsistencies.
+    </p>
+
+    <span>
+        Analyze Video →
+    </span>
+</div>
+
             </section>
 
 

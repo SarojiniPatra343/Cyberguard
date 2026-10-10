@@ -14,6 +14,7 @@ import ImageAnalyzer from "./pages/image-analyzer";
 import VoiceAnalyzer from "./pages/voice-analyzer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import VideoAnalyzer from "./pages/VideoAnalyzer";
 
 
 function App() {
@@ -86,6 +87,10 @@ function App() {
     element={<VoiceAnalyzer />}
 />
 <Route path="/login" element={<Login />} />
+<Route
+  path="/video-analyzer"
+  element={<VideoAnalyzer />}
+/>
 
 
       </Routes>

@@ -1,28 +1,23 @@
-# Python
-__pycache__/
-*.py[cod]
-
-# Virtual environments
+backend/venv/
 venv/
-env/
-.venv/
 
-# Django
-*.sqlite3
-staticfiles/
-
-# Environment files
+backend/.env
 .env
-.env.*
+*.env
 
-# Node
+backend/__pycache__/
+backend/**/__pycache__/
+__pycache__/
+*.pyc
+
+frontend/node_modules/
 node_modules/
-frontend/dist/
 
-# IDE
+frontend/dist/
+dist/
+
 .vscode/
 .idea/
 
-# OS
 .DS_Store
 Thumbs.db
