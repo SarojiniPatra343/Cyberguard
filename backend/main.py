@@ -12,7 +12,7 @@ from routes.auth_routes import router as auth_router
 from routes.image_routes import router as image_router
 from config.database import test_database_connection
 from routes.voice_routes import router as voice_router
-from routes.video_routes import router as video_routes
+
 
 app = FastAPI(
     title="CYBERGUARD API",
@@ -58,7 +58,7 @@ app.include_router(email_router)
 app.include_router(message_router)
 app.include_router(dashboard_router)
 app.include_router(voice_router)
-app.include_router(video_routes, prefix="/api")
+
 # Authentication routes
 app.include_router(auth_router)
 app.include_router(image_router)

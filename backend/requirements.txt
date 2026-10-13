@@ -10,3 +10,7 @@ numpy
 joblib
 python-multipart
 opencv-python-headless
+python-multipart
+torch
+transformers
+av
